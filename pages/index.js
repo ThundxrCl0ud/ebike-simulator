@@ -49,7 +49,7 @@ const parts = {
   { name: "Steel Blue", value: "#4682B4" },
   { name: "Sienna", value: "#A0522D" },
   { name: "Lemon", value: "#FFF700" }
-]
+],
     Light: [
       "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow", "Lavender", "Peach", "Mint", "Powder Blue", "Blanched Almond"
     ],
