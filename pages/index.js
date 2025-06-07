@@ -186,7 +186,7 @@ function getColorButtonStyle(option) {
   "Sand": "#C2B280",
   "Rust": "#B7410E",
   "Copper Red": "#CB6D51",
-  "Mahogany": "#C04000"
+  "Mahogany": "#C04000",
     // Light
     "Light Blue": "#ADD8E6",
     "Light Pink": "#FFB6C1",
