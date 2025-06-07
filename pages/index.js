@@ -92,7 +92,7 @@ function getColorButtonStyle(option) {
     // Basic
     "Black": "#000000",
     "White": "#FFFFFF",
-    "Red"; "#FF0000",
+    "Red": "#FF0000",
     "Blue": "#0000FF",
     "Green": "#008000",
     "Yellow": "#FFFF00",
