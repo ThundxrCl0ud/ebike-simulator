@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 
 const parts = {
-  "Frame Color": {
+  FrameColor: {
     basic: [
 "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Brown", "Pink", "Gray", "Light Gray", "Cyan", "Magenta", "Lime",
 "Maroon", "Navy", "Olive", "Teal", "Silver", "Gold", "Coral", "Salmon", "Turquoise", "Violet", "Indigo", "Crimson", "Chocolate", "Khaki", "Lavender",
