@@ -29,58 +29,58 @@ const parts = {
       "Champagne Sparkle", "Holographic Chrome", "Oil Slick", "Silver Flake", "Blue Flake", "Green Flake"
     ],
   },
-  tireType: [
+  Tires: [
     "Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid", "Pirelli Scorpion", "Michelin Wild Enduro"
   ],
-  handlebars: [
+  Handlebars: [
     "Warp 9 Riser", "ODI V2 Lock-On", "ProTaper", "Stock", "Renthal Fatbar", "Renthal Apex", "Biltwell Tracker"
   ],
-  headlight: [
+  Headlight: [
     "None", "Basic", "Baja Designs S2 Pro", "GritShift Projector", "Supernova E3", "Lezyne Macro Drive"
   ],
-  seat: [
+  Seat: [
     "Guts Racing Tall", "Guts Racing Gripper", "Luna Tall Seat", "Stock", "Selle Italia SLR", "Brooks Cambium"
   ],
-  pegs: [
+  Pegs: [
     "Warp 9 MX Pegs", "Prickly Peg Extenders", "Amazon CNC Billet", "Stock", "ODI Rogue"
   ],
-  throttle: [
+  Throttle: [
     "Domino", "Surron Ultra Bee Throttle Tube", "NB Power Twist", "Stock"
   ],
-  grips: [
+  Grips: [
     "ODI Rogue", "Warp 9 Lock-On", "ProTaper Pillow Top", "Stock"
   ],
-  subframe: [
+  Subframe: [
     "Warp 9 Riser Kit", "GritShift Subframe", "Custom Fabricated", "Stock"
   ],
-  wheels: [
+  Wheels: [
     "Warp 9 19/17 Supermoto", "DirtyBike 21/18 MX", "Custom Anodized", "Stock 19/19"
   ],
-  chain: [
+  Chain: [
     "DID 420NZ3 Gold", "EK 420 SR", "Amazon Heavy-Duty", "Stock"
   ],
-  sprocket: [
+  Sprocket: [
     "Prickly 54T", "Warp 9 52T", "Luna 60T", "Stock 48T"
   ],
-  bashPlate: [
+  Skidplate: [
     "EBMX Aluminum Bash Plate", "Warp 9 Skid Plate", "Amazon HD Plate", "Stock"
   ],
-  battery: [
+  Battery: [
     "EBMX 72v 42Ah", "ChiBatterySystems 60v", "GrinTech 72v", "Stock 60v"
   ],
-  controller: [
+  Controller: [
     "EBMX X-9000", "Nucular 24F", "Votol EM-150", "Stock"
   ],
-  display: [
+  Display: [
     "EggRider V2", "Apt 850C", "Luna Full Color", "Stock"
   ],
-  motor: [
+  Motor: [
     "QS 3kW V3", "NB Power 5000W", "EBMX XLB-60", "Stock"
   ],
-  rearShock: [
+  RearShock: [
     "DNM RCP-2S", "FastAce BDA53RC", "Fox Float X", "Stock"
   ],
-  frontFork: [
+  Forks: [
     "DNM USD-8s", "Manitou Dorado", "KKE Inverted", "Stock"
   ],
 };
