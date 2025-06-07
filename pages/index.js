@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const parts = {
-  frameColor: ["Black", "White", "Blue", "Red", "Custom Powder Coated"],
+  frameColor: ["Black", "White", "Blue", "Red", "Purple", "Custom Powder Coated"],
   tireType: ["Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid"],
   handlebars: ["Warp 9 Riser", "ODI V2 Lock-On", "ProTaper", "Stock"],
   headlight: ["None", "Basic", "Baja Designs S2 Pro", "GritShift Projector"],
