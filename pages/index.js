@@ -11,7 +11,6 @@ const parts = {
   "Peacock Blue", "Pear", "Periwinkle", "Pink", "Platinum", "Plum", "Pumpkin", "Purple", "Red", "Rose", "Ruby Red", "Rust", "Salmon", "Sand",
   "Sea Green", "Sienna", "Sky Blue", "Slate Gray", "Snow", "Steel", "Steel Blue", "Sunflower", "Tan", "Teal", "Tomato", "Turquoise", "Violet",
   "White", "Yellow"
-]
     ],
     Light: [
   "Light Red", "Light Coral", "Light Pink", "Light Salmon", "Light Orange", "Light Yellow", "Light Gold", "Light Peach", "Light Apricot",
