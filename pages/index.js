@@ -44,71 +44,114 @@ const parts = {
   frontFork: ["DNM USD-8s", "Manitou Dorado", "KKE Inverted", "Stock"],
 };
 
-const colorMap = {
-  Black: "#000000",
-  White: "#FFFFFF",
-  Red: "#FF0000",
-  Blue: "#0000FF",
-  Green: "#00FF00",
-  Yellow: "#FFFF00",
-  Orange: "#FFA500",
-  Purple: "#800080",
-  Pink: "#FFC0CB",
-  Gray: "#808080",
-  Brown: "#A52A2A",
+// Helper to get styles per color type
+function getColorButtonStyle(option, isSelected) {
+  const baseStyle = {
+    padding: "8px",
+    borderRadius: "4px",
+    border: isSelected ? "2px solid #000" : "1px solid #ccc",
+    cursor: "pointer",
+    color: "#000",
+    userSelect: "none",
+    transition: "all 0.3s ease",
+    minWidth: "80px",
+    textAlign: "center",
+  };
 
-  "Light Blue": "#ADD8E6",
-  "Light Pink": "#FFB6C1",
-  "Light Gray": "#D3D3D3",
-  "Light Green": "#90EE90",
-  "Light Yellow": "#FFFFE0",
+  // Basic mapping from color names to CSS colors (expand as needed)
+  const colorMap = {
+    Black: "#000000",
+    White: "#FFFFFF",
+    Red: "#FF0000",
+    Blue: "#0000FF",
+    Green: "#008000",
+    Yellow: "#FFFF00",
+    Orange: "#FFA500",
+    Purple: "#800080",
+    Pink: "#FFC0CB",
+    Gray: "#808080",
+    Brown: "#A52A2A",
+    "Light Blue": "#ADD8E6",
+    "Light Pink": "#FFB6C1",
+    "Light Gray": "#D3D3D3",
+    "Light Green": "#90EE90",
+    "Light Yellow": "#FFFFE0",
+    "Dark Blue": "#00008B",
+    "Dark Red": "#8B0000",
+    "Dark Green": "#006400",
+    "Dark Purple": "#4B0082",
+    Charcoal: "#36454F",
+    "Midnight Black": "#191919",
+    "Matte Black": "#1C1C1C",
+    "Matte Gray": "#4D4D4D",
+    "Matte Blue": "#3B5998",
+    "Matte Red": "#B22222",
+    "Matte White": "#F5F5F5",
+    "Matte Olive": "#6B8E23",
+    "Metallic Silver": "#C0C0C0",
+    "Metallic Blue": "#4682B4",
+    "Metallic Red": "#B22222",
+    "Metallic Green": "#228B22",
+    "Metallic Copper": "#B87333",
+    "Metallic Gold": "#FFD700",
+    "Neon Green": "#39FF14",
+    "Neon Pink": "#FF6EC7",
+    "Neon Orange": "#FF6700",
+    "Neon Yellow": "#FFFF33",
+    "Neon Blue": "#1F51FF",
+    "Galaxy Purple Flake": "#6A0DAD",
+    "Electric Blue Flake": "#7DF9FF",
+    "Ruby Red Sparkle": "#9B111E",
+    "Emerald Green Sparkle": "#50C878",
+    "Midnight Black Flake": "#0B0B0B",
+    "Champagne Sparkle": "#F7E7CE",
+    "Holographic Chrome": "#D1C4E9",
+    "Oil Slick": "#3B3B3B",
+  };
 
-  "Dark Blue": "#00008B",
-  "Dark Red": "#8B0000",
-  "Dark Green": "#006400",
-  "Dark Purple": "#4B0082",
-  Charcoal: "#36454F",
-  "Midnight Black": "#191919",
+  // Get base background color
+  let backgroundColor = colorMap[option] || "#fff";
 
-  "Matte Black": "#1C1C1C",
-  "Matte Gray": "#696969",
-  "Matte Blue": "#3B5998",
-  "Matte Red": "#8B0000",
-  "Matte White": "#F5F5F5",
-  "Matte Olive": "#708238",
+  // Start composing style
+  let style = { ...baseStyle, backgroundColor };
 
-  "Metallic Silver": "#C0C0C0",
-  "Metallic Blue": "#4A90E2",
-  "Metallic Red": "#B22222",
-  "Metallic Green": "#228B22",
-  "Metallic Copper": "#B87333",
-  "Metallic Gold": "#FFD700",
+  // Add special effects based on the category:
 
-  "Neon Green": "#39FF14",
-  "Neon Pink": "#FF6EC7",
-  "Neon Orange": "#FF5F1F",
-  "Neon Yellow": "#FFFF33",
-  "Neon Blue": "#1B03A3",
+  // Neon - add glow
+  if (option.startsWith("Neon")) {
+    style.color = "#fff";
+    style.textShadow = `0 0 8px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
+  }
 
-  "Galaxy Purple Flake": "#6A0DAD",
-  "Electric Blue Flake": "#7DF9FF",
-  "Ruby Red Sparkle": "#9B111E",
-  "Emerald Green Sparkle": "#50C878",
-  "Midnight Black Flake": "#0B0B0B",
-  "Champagne Sparkle": "#F7E7CE",
-  "Holographic Chrome": "#E0E0E0",
-  "Oil Slick": "#3B3C36",
-};
+  // Matte - desaturate and reduce brightness
+  else if (option.startsWith("Matte")) {
+    style.backgroundColor = backgroundColor;
+    style.filter = "brightness(0.7) saturate(0.5)";
+  }
 
-function getTextColor(bgColor) {
-  if (!bgColor) return "#000";
-  const c = bgColor.substring(1); // strip #
-  const rgb = parseInt(c, 16);
-  const r = (rgb >> 16) & 0xff;
-  const g = (rgb >> 8) & 0xff;
-  const b = (rgb >> 0) & 0xff;
-  const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-  return luminance > 186 ? "#000" : "#fff";
+  // Metallic - add a subtle gradient to simulate shine
+  else if (option.startsWith("Metallic")) {
+    style.backgroundColor = backgroundColor;
+    style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #fff 60%, ${backgroundColor} 90%)`;
+    style.color = "#fff";
+  }
+
+  // Flake / Sparkle - add glittery texture simulation
+  else if (
+    option.includes("Flake") ||
+    option.includes("Sparkle") ||
+    option.includes("Holographic") ||
+    option.includes("Oil Slick")
+  ) {
+    style.backgroundColor = backgroundColor;
+    style.backgroundImage =
+      "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.8) 2px, transparent 4px), " +
+      "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.5) 1px, transparent 3px)";
+    style.backgroundSize = "10px 10px";
+    style.color = "#fff";
+  }
+
+  return style;
 }
 
 export default function EBikeCustomizer() {
@@ -151,28 +194,15 @@ export default function EBikeCustomizer() {
           <div>
             <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px" }}>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
-                {parts[activeCategory].map((option) => {
-                  const isFrameColor = activeCategory === "frameColor";
-                  const bgColor = isFrameColor ? colorMap[option] || "#fff" : config[activeCategory] === option ? "#ddd" : "#fff";
-                  const textColor = isFrameColor ? getTextColor(bgColor) : "#000";
-
-                  return (
-                    <button
-                      key={option}
-                      style={{
-                        padding: "8px",
-                        borderRadius: "4px",
-                        border: config[activeCategory] === option ? "2px solid #000" : "1px solid #ccc",
-                        backgroundColor: bgColor,
-                        color: textColor,
-                        cursor: "pointer",
-                      }}
-                      onClick={() => updatePart(activeCategory, option)}
-                    >
-                      {option}
-                    </button>
-                  );
-                })}
+                {parts[activeCategory].map((option) => (
+                  <button
+                    key={option}
+                    style={getColorButtonStyle(option, config[activeCategory] === option)}
+                    onClick={() => updatePart(activeCategory, option)}
+                  >
+                    {option}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
