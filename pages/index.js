@@ -290,7 +290,7 @@ export default function EBikeCustomizer() {
   const filteredColors = useMemo(() => {
     if (activeCategory !== "frameColor") return [];
 
-    let colors = parts.FrameColor?.[colorCategory] || [];
+ let colors = Object.keys(parts.frameColor?.[colorCategory] || {});
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       colors = colors.filter((c) => c.toLowerCase().includes(term));
