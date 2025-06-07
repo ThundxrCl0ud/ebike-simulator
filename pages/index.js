@@ -1,29 +1,38 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 const parts = {
-  frameColor: [
-    // Basic Colors
-    "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
-
-    // Light Colors
-    "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow",
-
-    // Dark Colors
-    "Dark Blue", "Dark Red", "Dark Green", "Dark Purple", "Charcoal", "Midnight Black",
-
-    // Matte Finishes
-    "Matte Black", "Matte Gray", "Matte Blue", "Matte Red", "Matte White", "Matte Olive",
-
-    // Metallic Finishes
-    "Metallic Silver", "Metallic Blue", "Metallic Red", "Metallic Green", "Metallic Copper", "Metallic Gold",
-
-    // Neon Finishes
-    "Neon Green", "Neon Pink", "Neon Orange", "Neon Yellow", "Neon Blue",
-
-    // Sparkly / Flake Finishes
-    "Galaxy Purple Flake", "Electric Blue Flake", "Ruby Red Sparkle", "Emerald Green Sparkle", "Midnight Black Flake", "Champagne Sparkle", "Holographic Chrome", "Oil Slick"
-  ],
-
+  frameColor: {
+    // Categories as keys with arrays of colors
+    Basic: [
+      "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
+      "Crimson", "Sky Blue", "Lime Green", "Sunset Orange", "Lavender", "Magenta", "Slate Gray"
+    ],
+    Light: [
+      "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow",
+      "Pastel Yellow", "Pastel Pink", "Pastel Blue", "Ivory", "Mint Cream"
+    ],
+    Dark: [
+      "Dark Blue", "Dark Red", "Dark Green", "Dark Purple", "Charcoal", "Midnight Black",
+      "Burgundy", "Forest Green", "Navy", "Deep Purple"
+    ],
+    Matte: [
+      "Matte Black", "Matte Gray", "Matte Blue", "Matte Red", "Matte White", "Matte Olive",
+      "Matte Navy", "Matte Maroon", "Matte Teal"
+    ],
+    Metallic: [
+      "Metallic Silver", "Metallic Blue", "Metallic Red", "Metallic Green", "Metallic Copper", "Metallic Gold",
+      "Metallic Bronze", "Metallic Purple", "Metallic Teal", "Metallic Rose Gold", "Metallic Charcoal"
+    ],
+    Neon: [
+      "Neon Green", "Neon Pink", "Neon Orange", "Neon Yellow", "Neon Blue",
+      "Neon Purple", "Neon Cyan"
+    ],
+    Flaky: [
+      "Galaxy Purple Flake", "Electric Blue Flake", "Ruby Red Sparkle", "Emerald Green Sparkle",
+      "Midnight Black Flake", "Champagne Sparkle", "Holographic Chrome", "Oil Slick",
+      "Silver Glitter", "Gold Flake", "Crimson Sparkle", "Blue Sparkle", "Green Flake"
+    ],
+  },
   tireType: ["Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid"],
   handlebars: ["Warp 9 Riser", "ODI V2 Lock-On", "ProTaper", "Stock"],
   headlight: ["None", "Basic", "Baja Designs S2 Pro", "GritShift Projector"],
@@ -44,7 +53,7 @@ const parts = {
   frontFork: ["DNM USD-8s", "Manitou Dorado", "KKE Inverted", "Stock"],
 };
 
-// Helper to get styles per color type
+// Updated getColorButtonStyle to handle categories
 function getColorButtonStyle(option, isSelected) {
   const baseStyle = {
     padding: "8px",
@@ -58,7 +67,7 @@ function getColorButtonStyle(option, isSelected) {
     textAlign: "center",
   };
 
-  // Basic mapping from color names to CSS colors (expand as needed)
+  // Mapping color names to CSS colors (expanded)
   const colorMap = {
     Black: "#000000",
     White: "#FFFFFF",
@@ -71,34 +80,60 @@ function getColorButtonStyle(option, isSelected) {
     Pink: "#FFC0CB",
     Gray: "#808080",
     Brown: "#A52A2A",
+    Crimson: "#DC143C",
+    "Sky Blue": "#87CEEB",
+    "Lime Green": "#32CD32",
+    "Sunset Orange": "#FD5E53",
+    Lavender: "#E6E6FA",
+    Magenta: "#FF00FF",
+    "Slate Gray": "#708090",
     "Light Blue": "#ADD8E6",
     "Light Pink": "#FFB6C1",
     "Light Gray": "#D3D3D3",
     "Light Green": "#90EE90",
     "Light Yellow": "#FFFFE0",
+    "Pastel Yellow": "#FDFD96",
+    "Pastel Pink": "#DEA5A4",
+    "Pastel Blue": "#A3C1AD",
+    Ivory: "#FFFFF0",
+    "Mint Cream": "#F5FFFA",
     "Dark Blue": "#00008B",
     "Dark Red": "#8B0000",
     "Dark Green": "#006400",
     "Dark Purple": "#4B0082",
     Charcoal: "#36454F",
     "Midnight Black": "#191919",
+    Burgundy: "#800020",
+    "Forest Green": "#228B22",
+    Navy: "#000080",
+    "Deep Purple": "#301934",
     "Matte Black": "#1C1C1C",
     "Matte Gray": "#4D4D4D",
     "Matte Blue": "#3B5998",
     "Matte Red": "#B22222",
     "Matte White": "#F5F5F5",
     "Matte Olive": "#6B8E23",
+    "Matte Navy": "#2C3E50",
+    "Matte Maroon": "#800000",
+    "Matte Teal": "#008080",
     "Metallic Silver": "#C0C0C0",
     "Metallic Blue": "#4682B4",
     "Metallic Red": "#B22222",
     "Metallic Green": "#228B22",
     "Metallic Copper": "#B87333",
     "Metallic Gold": "#FFD700",
+    "Metallic Bronze": "#CD7F32",
+    "Metallic Purple": "#6A0DAD",
+    "Metallic Teal": "#008080",
+    "Metallic Rose Gold": "#B76E79",
+    "Metallic Charcoal": "#36454F",
     "Neon Green": "#39FF14",
     "Neon Pink": "#FF6EC7",
     "Neon Orange": "#FF6700",
     "Neon Yellow": "#FFFF33",
     "Neon Blue": "#1F51FF",
+    "Neon Purple": "#9400D3",
+    "Neon Cyan": "#00FFFF",
     "Galaxy Purple Flake": "#6A0DAD",
     "Electric Blue Flake": "#7DF9FF",
     "Ruby Red Sparkle": "#9B111E",
@@ -107,47 +142,42 @@ function getColorButtonStyle(option, isSelected) {
     "Champagne Sparkle": "#F7E7CE",
     "Holographic Chrome": "#D1C4E9",
     "Oil Slick": "#3B3B3B",
+    "Silver Glitter": "#C0C0C0",
+    "Gold Flake": "#FFD700",
+    "Crimson Sparkle": "#DC143C",
+    "Blue Sparkle": "#0000FF",
+    "Green Flake": "#008000",
   };
 
-  // Get base background color
   let backgroundColor = colorMap[option] || "#fff";
 
-  // Start composing style
   let style = { ...baseStyle, backgroundColor };
-
-  // Add special effects based on the category:
 
   // Neon - add glow
   if (option.startsWith("Neon")) {
     style.color = "#fff";
     style.textShadow = `0 0 8px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
   }
-
   // Matte - desaturate and reduce brightness
   else if (option.startsWith("Matte")) {
-    style.backgroundColor = backgroundColor;
     style.filter = "brightness(0.7) saturate(0.5)";
   }
-
-  // Metallic - add a subtle gradient to simulate shine
+  // Metallic - add gradient shine
   else if (option.startsWith("Metallic")) {
-    style.backgroundColor = backgroundColor;
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #fff 60%, ${backgroundColor} 90%)`;
     style.color = "#fff";
   }
-
-  // Flake / Sparkle - add glittery texture simulation
+  // Flake / Sparkle - glitter texture simulation
   else if (
     option.includes("Flake") ||
     option.includes("Sparkle") ||
     option.includes("Holographic") ||
-    option.includes("Oil Slick")
+    option.includes("Oil Slick") ||
+    option.includes("Glitter")
   ) {
-    style.backgroundColor = backgroundColor;
     style.backgroundImage =
       "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.8) 2px, transparent 4px), " +
       "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.5) 1px, transparent 3px)";
-    style.backgroundSize = "10px 10px";
     style.color = "#fff";
   }
 
@@ -156,19 +186,63 @@ function getColorButtonStyle(option, isSelected) {
 
 export default function EBikeCustomizer() {
   const [config, setConfig] = useState(
-    Object.fromEntries(Object.keys(parts).map((key) => [key, parts[key][0]]))
+    Object.fromEntries(Object.keys(parts).map((key) => [key, Array.isArray(parts[key]) ? parts[key][0] : Object.values(parts[key])[0][0]]))
   );
   const [activeCategory, setActiveCategory] = useState(null);
+  const [colorSearch, setColorSearch] = useState("");
 
   const updatePart = (part, value) => {
     setConfig((prev) => ({ ...prev, [part]: value }));
+  };
+
+  // Handle filtering colors by search only for frameColor
+  const filteredColors = useMemo(() => {
+    if (activeCategory !== "frameColor") return parts.frameColor;
+    if (!colorSearch.trim()) return parts.frameColor;
+
+    // Filter each category inside frameColor
+    const filtered = {};
+    for (const [cat, colors] of Object.entries(parts.frameColor)) {
+      filtered[cat] = colors.filter((c) =>
+        c.toLowerCase().includes(colorSearch.toLowerCase())
+      );
+    }
+    return filtered;
+  }, [colorSearch, activeCategory]);
+
+  // Render frameColor with sections if active
+  const renderFrameColors = () => {
+    return Object.entries(filteredColors).map(([category, colors]) => {
+      if (colors.length === 0) return null;
+
+      return (
+        <div key={category} style={{ marginBottom: "16px" }}>
+          <h3 style={{ marginBottom: "8px", fontWeight: "600" }}>{category}</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(80px, 1fr))", gap: "8px" }}>
+            {colors.map((option) => (
+              <button
+                key={option}
+                style={getColorButtonStyle(option, config.frameColor === option)}
+                onClick={() => updatePart("frameColor", option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    });
   };
 
   return (
     <div className="p-4 grid gap-4">
       <h1 className="text-3xl font-bold">E-Bike Customizer Simulator</h1>
 
-      <button onClick={() => setActiveCategory((prev) => (prev ? null : Object.keys(parts)[0]))}>
+      <button
+        onClick={() =>
+          setActiveCategory((prev) => (prev ? null : Object.keys(parts)[0]))
+        }
+      >
         {activeCategory ? "Close Parts Menu" : "Parts"}
       </button>
 
@@ -185,25 +259,55 @@ export default function EBikeCustomizer() {
                   fontWeight: activeCategory === part ? "bold" : "normal",
                   marginBottom: "4px",
                 }}
-                onClick={() => setActiveCategory(part)}
+                onClick={() => {
+                  setActiveCategory(part);
+                  setColorSearch(""); // Reset search on category change
+                }}
               >
                 {part}
               </button>
             ))}
           </div>
           <div>
-            <div style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "16px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
-                {parts[activeCategory].map((option) => (
-                  <button
-                    key={option}
-                    style={getColorButtonStyle(option, config[activeCategory] === option)}
-                    onClick={() => updatePart(activeCategory, option)}
-                  >
-                    {option}
-                  </button>
-                ))}
-              </div>
+            <div
+              style={{
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "16px",
+              }}
+            >
+              {activeCategory === "frameColor" && (
+                <input
+                  type="text"
+                  placeholder="Search colors..."
+                  value={colorSearch}
+                  onChange={(e) => setColorSearch(e.target.value)}
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    marginBottom: "16px",
+                    borderRadius: "4px",
+                    border: "1px solid #ccc",
+                  }}
+                  autoFocus
+                />
+              )}
+
+              {activeCategory === "frameColor"
+                ? renderFrameColors()
+                : (
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
+                    {parts[activeCategory].map((option) => (
+                      <button
+                        key={option}
+                        style={getColorButtonStyle(option, config[activeCategory] === option)}
+                        onClick={() => updatePart(activeCategory, option)}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
             </div>
           </div>
         </div>
