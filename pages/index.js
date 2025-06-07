@@ -135,7 +135,7 @@ function getColorButtonStyle(option) {
     "Periwinkle": "#CCCCFF",
     "Steel Blue": "#4682B4",
     "Sienna": "#A0522D",
-    "Lemon": "#FFF700"
+    "Lemon": "#FFF700",
     // Light
     "Light Blue": "#ADD8E6",
     "Light Pink": "#FFB6C1",
