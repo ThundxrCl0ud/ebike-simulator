@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 
 const parts = {
-  framecolor: {
+  frameColor: {
     basic: [
 "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Brown", "Pink", "Gray", "Light Gray", "Cyan", "Magenta", "Lime",
 "Maroon", "Navy", "Olive", "Teal", "Silver", "Gold", "Coral", "Salmon", "Turquoise", "Violet", "Indigo", "Crimson", "Chocolate", "Khaki", "Lavender",
@@ -290,7 +290,7 @@ export default function EBikeCustomizer() {
   const filteredColors = useMemo(() => {
     if (activeCategory !== "frameColor") return [];
 
- let colors = Object.keys(parts.frameColor?.[colorCategory] || {});
+    let colors = parts.frameColor[colorCategory] || [];
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       colors = colors.filter((c) => c.toLowerCase().includes(term));
