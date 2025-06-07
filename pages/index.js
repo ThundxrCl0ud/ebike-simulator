@@ -416,4 +416,12 @@ export default function EBikeCustomizer() {
         </h2>
         <ul style={{ listStyleType: "disc", paddingLeft: 20 }}>
           {Object.entries(config).map(([part, value]) => (
-            <li key={part} style={{ marginBottom: 4
+            <li key={part} style={{ marginBottom: 4 }}>
+              <strong>{part}:</strong> {value}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
