@@ -1,46 +1,33 @@
 import { useState, useMemo } from "react";
 
-const parts = {
-  frameColor: {
-    Basic: [
-      "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
-      "Crimson", "Navy", "Teal", "Olive", "Maroon", "Lime", "Cyan", "Magenta", "Beige", "Coral",
-      "Turquoise", "Violet", "Indigo", "Gold", "Silver", "Chocolate", "Lavender", "Salmon", "Mint",
-      "Peach", "Plum", "Rust", "Tan", "Mustard", "Cream", "Sapphire", "Emerald", "Ruby", "Charcoal"
-    ],
-    Light: [
-      "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow",
-      "Pale Turquoise", "Lavender Blush", "Linen", "Light Cyan", "Peach Puff", "Powder Blue",
-      "Light Salmon", "Misty Rose", "Honeydew", "Alice Blue", "Seashell", "Old Lace", "Floral White",
-      "Ghost White", "Ivory", "Beige"
-    ],
-    Dark: [
-      "Dark Blue", "Dark Red", "Dark Green", "Dark Purple", "Charcoal", "Midnight Black",
-      "Burgundy", "Forest Green", "Saddle Brown", "Dark Slate Gray", "Indigo", "Midnight Blue",
-      "Dark Olive Green", "Dark Magenta", "Dark Cyan", "Dark Goldenrod", "Dark Orchid",
-      "Dark Sea Green", "Dark Slate Blue", "Dark Turquoise"
-    ],
-    Matte: [
-      "Matte Black", "Matte Gray", "Matte Blue", "Matte Red", "Matte White", "Matte Olive",
-      "Matte Navy", "Matte Burgundy", "Matte Forest Green", "Matte Charcoal", "Matte Maroon",
-      "Matte Mustard", "Matte Plum", "Matte Rust", "Matte Tan", "Matte Cream"
-    ],
-    Metallic: [
-      "Metallic Silver", "Metallic Blue", "Metallic Red", "Metallic Green", "Metallic Copper", "Metallic Gold",
-      "Metallic Bronze", "Metallic Teal", "Metallic Purple", "Metallic Burgundy", "Metallic Navy",
-      "Metallic Rose Gold", "Metallic Platinum", "Metallic Chrome", "Metallic Graphite"
-    ],
-    Neon: [
-      "Neon Green", "Neon Pink", "Neon Orange", "Neon Yellow", "Neon Blue",
-      "Neon Purple", "Neon Red", "Neon Cyan", "Neon Lime", "Neon Magenta"
-    ],
-    Flake: [
-      "Galaxy Purple Flake", "Electric Blue Flake", "Ruby Red Sparkle", "Emerald Green Sparkle", "Midnight Black Flake",
-      "Champagne Sparkle", "Holographic Chrome", "Oil Slick", "Silver Flake", "Gold Flake",
-      "Blue Sparkle", "Green Sparkle", "Pink Sparkle", "Purple Flake", "Red Flake"
-    ],
-  },
+const colorCategories = {
+  Basic: [
+    "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
+    "Maroon", "Navy", "Teal", "Olive", "Lime", "Cyan", "Magenta", "Silver", "Gold"
+  ],
+  Light: [
+    "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow", "Lavender", "Peach", "Mint Cream", "Honeydew", "Misty Rose"
+  ],
+  Dark: [
+    "Dark Blue", "Dark Red", "Dark Green", "Dark Purple", "Charcoal", "Midnight Black", "Burgundy", "Forest Green", "Indigo", "Slate Gray"
+  ],
+  Matte: [
+    "Matte Black", "Matte Gray", "Matte Blue", "Matte Red", "Matte White", "Matte Olive", "Matte Navy", "Matte Brown", "Matte Burgundy"
+  ],
+  Metallic: [
+    "Metallic Silver", "Metallic Blue", "Metallic Red", "Metallic Green", "Metallic Copper", "Metallic Gold", "Metallic Bronze", "Metallic Purple", "Metallic Teal"
+  ],
+  Neon: [
+    "Neon Green", "Neon Pink", "Neon Orange", "Neon Yellow", "Neon Blue", "Neon Purple", "Neon Red"
+  ],
+  Flake: [
+    "Galaxy Purple Flake", "Electric Blue Flake", "Ruby Red Sparkle", "Emerald Green Sparkle", "Midnight Black Flake", "Champagne Sparkle", "Holographic Chrome", "Oil Slick",
+    "Silver Flake", "Gold Flake", "Blue Flake", "Green Flake"
+  ],
+};
 
+const parts = {
+  frameColor: Object.values(colorCategories).flat(),
   tireType: ["Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid"],
   handlebars: ["Warp 9 Riser", "ODI V2 Lock-On", "ProTaper", "Stock"],
   headlight: ["None", "Basic", "Baja Designs S2 Pro", "GritShift Projector"],
@@ -61,7 +48,7 @@ const parts = {
   frontFork: ["DNM USD-8s", "Manitou Dorado", "KKE Inverted", "Stock"],
 };
 
-// Color mapping for backgrounds
+// Helper to get CSS color code for each color name
 const colorMap = {
   Black: "#000000",
   White: "#FFFFFF",
@@ -74,96 +61,44 @@ const colorMap = {
   Pink: "#FFC0CB",
   Gray: "#808080",
   Brown: "#A52A2A",
-  Crimson: "#DC143C",
+  Maroon: "#800000",
   Navy: "#000080",
   Teal: "#008080",
   Olive: "#808000",
-  Maroon: "#800000",
   Lime: "#00FF00",
   Cyan: "#00FFFF",
   Magenta: "#FF00FF",
-  Beige: "#F5F5DC",
-  Coral: "#FF7F50",
-  Turquoise: "#40E0D0",
-  Violet: "#EE82EE",
-  Indigo: "#4B0082",
-  Gold: "#FFD700",
   Silver: "#C0C0C0",
-  Chocolate: "#D2691E",
-  Lavender: "#E6E6FA",
-  Salmon: "#FA8072",
-  Mint: "#98FF98",
-  Peach: "#FFE5B4",
-  Plum: "#DDA0DD",
-  Rust: "#B7410E",
-  Tan: "#D2B48C",
-  Mustard: "#FFDB58",
-  Cream: "#FFFDD0",
-  Sapphire: "#0F52BA",
-  Emerald: "#50C878",
-  Ruby: "#9B111E",
-  Charcoal: "#36454F",
-
-  // Light colors
+  Gold: "#FFD700",
   "Light Blue": "#ADD8E6",
   "Light Pink": "#FFB6C1",
   "Light Gray": "#D3D3D3",
   "Light Green": "#90EE90",
   "Light Yellow": "#FFFFE0",
-  "Pale Turquoise": "#AFEEEE",
-  "Lavender Blush": "#FFF0F5",
-  Linen: "#FAF0E6",
-  "Light Cyan": "#E0FFFF",
-  "Peach Puff": "#FFDAB9",
-  "Powder Blue": "#B0E0E6",
-  "Light Salmon": "#FFA07A",
-  "Misty Rose": "#FFE4E1",
+  Lavender: "#E6E6FA",
+  Peach: "#FFE5B4",
+  "Mint Cream": "#F5FFFA",
   Honeydew: "#F0FFF0",
-  "Alice Blue": "#F0F8FF",
-  Seashell: "#FFF5EE",
-  "Old Lace": "#FDF5E6",
-  "Floral White": "#FFFAF0",
-  "Ghost White": "#F8F8FF",
-  Ivory: "#FFFFF0",
-
-  // Dark colors
+  "Misty Rose": "#FFE4E1",
   "Dark Blue": "#00008B",
   "Dark Red": "#8B0000",
   "Dark Green": "#006400",
   "Dark Purple": "#4B0082",
+  Charcoal: "#36454F",
   "Midnight Black": "#191919",
   Burgundy: "#800020",
-  "Saddle Brown": "#8B4513",
-  "Dark Slate Gray": "#2F4F4F",
-  "Midnight Blue": "#191970",
-  "Dark Olive Green": "#556B2F",
-  "Dark Magenta": "#8B008B",
-  "Dark Cyan": "#008B8B",
-  "Dark Goldenrod": "#B8860B",
-  "Dark Orchid": "#9932CC",
-  "Dark Sea Green": "#8FBC8F",
-  "Dark Slate Blue": "#483D8B",
-  "Dark Turquoise": "#00CED1",
-
-  // Matte finishes
+  "Forest Green": "#228B22",
+  Indigo: "#4B0082",
+  "Slate Gray": "#708090",
   "Matte Black": "#1C1C1C",
   "Matte Gray": "#4D4D4D",
   "Matte Blue": "#3B5998",
   "Matte Red": "#B22222",
   "Matte White": "#F5F5F5",
   "Matte Olive": "#6B8E23",
-  "Matte Navy": "#2C3E50",
-  "Matte Burgundy": "#800020",
-  "Matte Forest Green": "#254117",
-  "Matte Charcoal": "#36454F",
-  "Matte Maroon": "#800000",
-  "Matte Mustard": "#FFDB58",
-  "Matte Plum": "#8E4585",
-  "Matte Rust": "#B7410E",
-  "Matte Tan": "#D2B48C",
-  "Matte Cream": "#FFFDD0",
-
-  // Metallic finishes
+  "Matte Navy": "#1A237E",
+  "Matte Brown": "#5D4037",
+  "Matte Burgundy": "#6A1B1A",
   "Metallic Silver": "#C0C0C0",
   "Metallic Blue": "#4682B4",
   "Metallic Red": "#B22222",
@@ -171,16 +106,8 @@ const colorMap = {
   "Metallic Copper": "#B87333",
   "Metallic Gold": "#FFD700",
   "Metallic Bronze": "#CD7F32",
+  "Metallic Purple": "#6A0DAD",
   "Metallic Teal": "#008080",
-  "Metallic Purple": "#800080",
-  "Metallic Burgundy": "#800020",
-  "Metallic Navy": "#000080",
-  "Metallic Rose Gold": "#B76E79",
-  "Metallic Platinum": "#E5E4E2",
-  "Metallic Chrome": "#D4D4D4",
-  "Metallic Graphite": "#474A51",
-
-  // Neon finishes
   "Neon Green": "#39FF14",
   "Neon Pink": "#FF6EC7",
   "Neon Orange": "#FF6700",
@@ -188,11 +115,6 @@ const colorMap = {
   "Neon Blue": "#1F51FF",
   "Neon Purple": "#BC13FE",
   "Neon Red": "#FF073A",
-  "Neon Cyan": "#00FFFF",
-  "Neon Lime": "#BFFF00",
-  "Neon Magenta": "#FF00FF",
-
-  // Flake / Sparkle finishes
   "Galaxy Purple Flake": "#6A0DAD",
   "Electric Blue Flake": "#7DF9FF",
   "Ruby Red Sparkle": "#9B111E",
@@ -203,13 +125,11 @@ const colorMap = {
   "Oil Slick": "#3B3B3B",
   "Silver Flake": "#C0C0C0",
   "Gold Flake": "#FFD700",
-  "Blue Sparkle": "#1E90FF",
-  "Green Sparkle": "#32CD32",
-  "Pink Sparkle": "#FF69B4",
-  "Purple Flake": "#800080",
-  "Red Flake": "#FF0000",
+  "Blue Flake": "#0000FF",
+  "Green Flake": "#008000",
 };
 
+// Style generator for color buttons
 function getColorButtonStyle(option, isSelected) {
   const baseStyle = {
     padding: "8px",
@@ -223,29 +143,30 @@ function getColorButtonStyle(option, isSelected) {
     textAlign: "center",
   };
 
-  let backgroundColor = colorMap[option] || "#fff";
+  const backgroundColor = colorMap[option] || "#fff";
   let style = { ...baseStyle, backgroundColor };
 
-  // Neon glow
+  // Neon - glow effect
   if (option.startsWith("Neon")) {
     style.color = "#fff";
     style.textShadow = `0 0 8px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
   }
-  // Matte
+  // Matte - desaturate and darken
   else if (option.startsWith("Matte")) {
     style.filter = "brightness(0.7) saturate(0.5)";
   }
-  // Metallic gradient
+  // Metallic - gradient shine
   else if (option.startsWith("Metallic")) {
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #fff 60%, ${backgroundColor} 90%)`;
     style.color = "#fff";
   }
-  // Flake/sparkle texture simulation
+  // Flake/Sparkle - glitter pattern
   else if (
     option.includes("Flake") ||
     option.includes("Sparkle") ||
     option.includes("Holographic") ||
-    option.includes("Oil Slick")
+    option.includes("Oil Slick") ||
+    option.includes("Flake")
   ) {
     style.backgroundImage =
       "radial-gradient(circle at 20% 20%, rgba(255,255,255,0.8) 2px, transparent 4px), " +
@@ -259,85 +180,69 @@ function getColorButtonStyle(option, isSelected) {
 
 export default function EBikeCustomizer() {
   const [config, setConfig] = useState(
-    Object.fromEntries(Object.keys(parts).map((key) => [key, parts[key][typeof parts[key] === 'object' ? Object.keys(parts[key])[0] : 0][0]]))
+    Object.fromEntries(Object.keys(parts).map((key) => [key, parts[key][0]]))
   );
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
-  const [activePart, setActivePart] = useState(null);
-  const [activeColorCategory, setActiveColorCategory] = useState(null);
-  const [colorSearch, setColorSearch] = useState("");
+  // When selecting frameColor, activeColorCategory tracks which category tab inside frame colors
+  const [activeColorCategory, setActiveColorCategory] = useState("Basic");
 
-  const handleUpdate = (part, value) => {
+  // Update part config
+  const updatePart = (part, value) => {
     setConfig((prev) => ({ ...prev, [part]: value }));
   };
 
-  // When selecting frameColor part, show categories; else no categories
-  const isFrameColorActive = activePart === "frameColor";
-
-  // Filter colors based on search
-  const filteredColorsByCategory = useMemo(() => {
-    if (!isFrameColorActive) return {};
-
-    const searchLower = colorSearch.toLowerCase();
-
-    const filtered = {};
-    for (const [category, colors] of Object.entries(parts.frameColor)) {
-      filtered[category] = colors.filter((color) =>
-        color.toLowerCase().includes(searchLower)
-      );
-    }
-    return filtered;
-  }, [colorSearch, isFrameColorActive]);
-
-  // Ensure activeColorCategory stays valid
-  // Default to first category if none selected or current invalid
-  const colorCategories = Object.keys(parts.frameColor);
-  if (isFrameColorActive && (!activeColorCategory || !colorCategories.includes(activeColorCategory))) {
-    setActiveColorCategory(colorCategories[0]);
-  }
+  // Filter colors by search text in active color category
+  const filteredColors = useMemo(() => {
+    if (activeCategory !== "frameColor") return [];
+    const list = colorCategories[activeColorCategory] || [];
+    if (!searchText.trim()) return list;
+    const lower = searchText.toLowerCase();
+    return list.filter((c) => c.toLowerCase().includes(lower));
+  }, [searchText, activeColorCategory, activeCategory]);
 
   return (
-    <div className="p-4 grid gap-4" style={{ maxWidth: "900px", margin: "auto" }}>
-      <h1 className="text-3xl font-bold">E-Bike Customizer Simulator</h1>
+    <div className="p-4 grid gap-4" style={{ maxWidth: 900, margin: "auto" }}>
+      <h1 className="text-3xl font-bold text-center">E-Bike Customizer Simulator</h1>
 
       <button
-        onClick={() => setActivePart((prev) => (prev ? null : Object.keys(parts)[0]))}
-        style={{ padding: "8px 16px", fontSize: "1rem" }}
+        onClick={() => setActiveCategory((prev) => (prev ? null : Object.keys(parts)[0]))}
+        style={{ padding: "8px 16px", cursor: "pointer", margin: "0 auto", display: "block" }}
       >
-        {activePart ? "Close Parts Menu" : "Open Parts Menu"}
+        {activeCategory ? "Close Parts Menu" : "Open Parts Menu"}
       </button>
 
-      {activePart && (
+      {activeCategory && (
         <div
-          className="grid grid-cols-[200px_1fr] gap-4 mt-4"
-          style={{ minHeight: "300px" }}
+          className="grid"
+          style={{
+            gridTemplateColumns: "200px 1fr",
+            gap: 20,
+            marginTop: 24,
+          }}
         >
-          {/* Left Part Selection */}
-          <div
-            className="border-r pr-2 space-y-2"
-            style={{ borderRight: "1px solid #ccc" }}
-          >
+          {/* Left Sidebar - Categories */}
+          <div style={{ borderRight: "1px solid #ccc", paddingRight: 12 }}>
             {Object.keys(parts).map((part) => (
               <button
                 key={part}
+                onClick={() => {
+                  setActiveCategory(part);
+                  setSearchText("");
+                  if (part !== "frameColor") setActiveColorCategory("Basic");
+                }}
                 style={{
                   display: "block",
                   width: "100%",
                   textAlign: "left",
-                  fontWeight: activePart === part ? "bold" : "normal",
-                  marginBottom: "4px",
-                  padding: "6px 8px",
-                  cursor: "pointer",
-                  backgroundColor: activePart === part ? "#ddd" : "transparent",
+                  fontWeight: activeCategory === part ? "bold" : "normal",
+                  marginBottom: 6,
+                  padding: "8px",
+                  background: activeCategory === part ? "#ddd" : "transparent",
                   border: "none",
-                }}
-                onClick={() => {
-                  setActivePart(part);
-                  setColorSearch("");
-                  if (part === "frameColor") {
-                    setActiveColorCategory(colorCategories[0]);
-                  } else {
-                    setActiveColorCategory(null);
-                  }
+                  cursor: "pointer",
+                  borderRadius: 4,
                 }}
               >
                 {part}
@@ -345,29 +250,140 @@ export default function EBikeCustomizer() {
             ))}
           </div>
 
-          {/* Right Options Display */}
+          {/* Right Content - Options */}
           <div>
-            {isFrameColorActive ? (
+            {activeCategory === "frameColor" ? (
               <>
-                {/* Search bar only for frameColor */}
-                <input
-                  type="text"
-                  placeholder="Search colors..."
-                  value={colorSearch}
-                  onChange={(e) => setColorSearch(e.target.value)}
-                  style={{
-                    width: "100%",
-                    padding: "8px",
-                    marginBottom: "12px",
-                    borderRadius: "6px",
-                    border: "1px solid #ccc",
-                    fontSize: "1rem",
-                    boxSizing: "border-box",
-                  }}
-                />
-
-                {/* Color Categories Tabs */}
+                {/* Color Category Tabs */}
                 <div
                   style={{
                     display: "flex",
-                   
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                    gap: 8,
+                    marginBottom: 12,
+                  }}
+                >
+                  {Object.keys(colorCategories).map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setActiveColorCategory(cat);
+                        setSearchText("");
+                      }}
+                      style={{
+                        padding: "6px 12px",
+                        borderRadius: 20,
+                        border: activeColorCategory === cat ? "2px solid #000" : "1px solid #aaa",
+                        background: activeColorCategory === cat ? "#eee" : "transparent",
+                        cursor: "pointer",
+                        fontWeight: activeColorCategory === cat ? "bold" : "normal",
+                        userSelect: "none",
+                      }}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Search bar */}
+                <div style={{ marginBottom: 16, textAlign: "center" }}>
+                  <input
+                    type="text"
+                    placeholder="Search colors..."
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    style={{
+                      padding: "8px",
+                      width: "100%",
+                      maxWidth: 300,
+                      borderRadius: 6,
+                      border: "1px solid #ccc",
+                    }}
+                  />
+                </div>
+
+                {/* Color Buttons */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))",
+                    gap: 10,
+                  }}
+                >
+                  {filteredColors.length === 0 ? (
+                    <div style={{ textAlign: "center", gridColumn: "1/-1", color: "#666" }}>
+                      No colors found.
+                    </div>
+                  ) : (
+                    filteredColors.map((colorName) => (
+                      <button
+                        key={colorName}
+                        onClick={() => updatePart("frameColor", colorName)}
+                        style={getColorButtonStyle(colorName, config.frameColor === colorName)}
+                        title={colorName}
+                        type="button"
+                      >
+                        {colorName}
+                      </button>
+                    ))
+                  )}
+                </div>
+              </>
+            ) : (
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+                  gap: 12,
+                }}
+              >
+                {parts[activeCategory].map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => updatePart(activeCategory, option)}
+                    style={{
+                      padding: "10px",
+                      borderRadius: 6,
+                      border: config[activeCategory] === option ? "2px solid #000" : "1px solid #ccc",
+                      cursor: "pointer",
+                      backgroundColor: "#fff",
+                      userSelect: "none",
+                      fontWeight: config[activeCategory] === option ? "bold" : "normal",
+                    }}
+                    type="button"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Configuration Summary */}
+      <div
+        style={{
+          padding: 16,
+          border: "1px solid #ccc",
+          borderRadius: 12,
+          backgroundColor: "#f9f9f9",
+          marginTop: 32,
+          maxWidth: 900,
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <h2 style={{ fontWeight: "600", marginBottom: 12 }}>Your E-Bike Config</h2>
+        <ul style={{ listStyleType: "disc", paddingLeft: 20 }}>
+          {Object.entries(config).map(([part, value]) => (
+            <li key={part}>
+              <strong>{part}:</strong> {value}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
