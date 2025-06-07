@@ -2,10 +2,54 @@ import { useState, useMemo } from "react";
 
 const parts = {
   frameColor: {
-    Basic: [
-      "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
-      "Beige", "Crimson", "Teal", "Navy", "Olive", "Maroon", "Cyan", "Magenta", "Lime", "Coral"
-    ],
+   basic: [
+  { name: "Black", value: "#000000" },
+  { name: "White", value: "#FFFFFF" },
+  { name: "Red", value: "#FF0000" },
+  { name: "Blue", value: "#0000FF" },
+  { name: "Green", value: "#008000" },
+  { name: "Yellow", value: "#FFFF00" },
+  { name: "Orange", value: "#FFA500" },
+  { name: "Purple", value: "#800080" },
+  { name: "Brown", value: "#A52A2A" },
+  { name: "Pink", value: "#FFC0CB" },
+  { name: "Gray", value: "#808080" },
+  { name: "Light Gray", value: "#D3D3D3" },
+  { name: "Cyan", value: "#00FFFF" },
+  { name: "Magenta", value: "#FF00FF" },
+  { name: "Lime", value: "#00FF00" },
+  { name: "Maroon", value: "#800000" },
+  { name: "Navy", value: "#000080" },
+  { name: "Olive", value: "#808000" },
+  { name: "Teal", value: "#008080" },
+  { name: "Silver", value: "#C0C0C0" },
+  { name: "Gold", value: "#FFD700" },
+  { name: "Coral", value: "#FF7F50" },
+  { name: "Salmon", value: "#FA8072" },
+  { name: "Turquoise", value: "#40E0D0" },
+  { name: "Violet", value: "#EE82EE" },
+  { name: "Indigo", value: "#4B0082" },
+  { name: "Crimson", value: "#DC143C" },
+  { name: "Chocolate", value: "#D2691E" },
+  { name: "Khaki", value: "#F0E68C" },
+  { name: "Lavender", value: "#E6E6FA" },
+  { name: "Beige", value: "#F5F5DC" },
+  { name: "Mint", value: "#98FF98" },
+  { name: "Mustard", value: "#FFDB58" },
+  { name: "Peach", value: "#FFE5B4" },
+  { name: "Rust", value: "#B7410E" },
+  { name: "Slate Gray", value: "#708090" },
+  { name: "Sea Green", value: "#2E8B57" },
+  { name: "Tan", value: "#D2B48C" },
+  { name: "Tomato", value: "#FF6347" },
+  { name: "Wheat", value: "#F5DEB3" },
+  { name: "Azure", value: "#007FFF" },
+  { name: "Chartreuse", value: "#7FFF00" },
+  { name: "Periwinkle", value: "#CCCCFF" },
+  { name: "Steel Blue", value: "#4682B4" },
+  { name: "Sienna", value: "#A0522D" },
+  { name: "Lemon", value: "#FFF700" }
+]
     Light: [
       "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow", "Lavender", "Peach", "Mint", "Powder Blue", "Blanched Almond"
     ],
