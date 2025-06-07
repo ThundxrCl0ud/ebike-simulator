@@ -94,7 +94,6 @@ function getColorButtonStyle(option) {
   // Base colors for mapping
   const colorMap = {
     // Basic
-   {
   "Black": "#000000",
   "White": "#FFFFFF",
   "Gray": "#808080",
@@ -188,7 +187,6 @@ function getColorButtonStyle(option) {
   "Rust": "#B7410E",
   "Copper Red": "#CB6D51",
   "Mahogany": "#C04000"
-    {
     // Light
     "Light Blue": "#ADD8E6",
     "Light Pink": "#FFB6C1",
