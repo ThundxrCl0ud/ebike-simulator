@@ -1,7 +1,29 @@
 import { useState } from "react";
 
 const parts = {
-  frameColor: ["Black", "White", "Blue", "Red", "Custom Powder Coated"],
+frameColor: [
+  // Basic Colors
+  "Black", "White", "Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Gray", "Brown",
+
+  // Light Colors
+  "Light Blue", "Light Pink", "Light Gray", "Light Green", "Light Yellow",
+
+  // Dark Colors
+  "Dark Blue", "Dark Red", "Dark Green", "Dark Purple", "Charcoal", "Midnight Black",
+
+  // Matte Finishes
+  "Matte Black", "Matte Gray", "Matte Blue", "Matte Red", "Matte White", "Matte Olive",
+
+  // Metallic Finishes
+  "Metallic Silver", "Metallic Blue", "Metallic Red", "Metallic Green", "Metallic Copper", "Metallic Gold",
+
+  // Neon Finishes
+  "Neon Green", "Neon Pink", "Neon Orange", "Neon Yellow", "Neon Blue",
+
+  // Sparkly / Flake Finishes
+  "Galaxy Purple Flake", "Electric Blue Flake", "Ruby Red Sparkle", "Emerald Green Sparkle", "Midnight Black Flake", "Champagne Sparkle", "Holographic Chrome", "Oil Slick"
+],
+
   tireType: ["Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid"],
   handlebars: ["Warp 9 Riser", "ODI V2 Lock-On", "ProTaper", "Stock"],
   headlight: ["None", "Basic", "Baja Designs S2 Pro", "GritShift Projector"],
