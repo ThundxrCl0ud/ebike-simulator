@@ -187,11 +187,7 @@ const parts = {
       "Zero SR/F ZF14.4", "Zero SR/F ZF17.3", "Zero SR/S ZF14.4", "Zero SR/S ZF17.3"
     ]
   }
-}
-  Kuberg: [
-    "Kuberg Freerider 8kW", "Kuberg Freerider 12kW", "Kuberg Freerider 14kW", "Kuberg Freerider Street 4kW", "Kuberg Ranger 8kW",
-    "Kuberg Ranger 12kW", "Kuberg Ranger 14kW"
-    ],
+},
     Onyx: [
     "Onyx CTY", "Onyx RCR", "Onyx RCR LTD", "Onyx RCR Street", "Onyx LZR", "Onyx LZR Pro"
     ],
