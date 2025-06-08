@@ -120,6 +120,9 @@ const parts = {
     ],
   },
   Bikes: {
+  "Stark Varg": [
+    "Stark Varg MX (standard, 2021–2023)", "Stark Varg MX Alpha (80 hp)", "Stark Varg EX 60 hp (2025 enduro)", "Stark Varg EX Alpha 80 hp",
+    ],
   Talaria: [
     "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", "Talaria Sting R MX4",
     "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept",
