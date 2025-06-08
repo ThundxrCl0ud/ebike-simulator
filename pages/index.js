@@ -188,22 +188,6 @@ const parts = {
     ]
   }
 },
-    Onyx: [
-    "Onyx CTY", "Onyx RCR", "Onyx RCR LTD", "Onyx RCR Street", "Onyx LZR", "Onyx LZR Pro"
-    ],
-    Fantic: [
-    "Fantic XF2 Integra", "Fantic XF2 Fat Sport", "Fantic XMF 1.7", "Fantic XMF 1.7 Carbon", "Fantic XEF 1.9 Race", "Fantic XEF 1.9 Factory",
-    "Fantic XEF 1.9 Carbon Team", "Fantic Issimo Urban", "Fantic Issimo Fun"
-    ],
-    Bultaco: [
-    "Bultaco Brinco R", "Bultaco Brinco RB", "Bultaco Brinco S", "Bultaco Brinco C", "Bultaco Albero", "Bultaco Rapitán", "Bultaco Pursang E-Track"
-    ],
-    Zero: [
-    "Zero S", "Zero SR", "Zero SR/F", "Zero SR/S", "Zero DSR", "Zero DSR/X", "Zero FX", "Zero FXE", "Zero FXE-2", "Zero XB", "Zero XE", "Zero XU",
-    "Zero MX", "Zero MXR", "Zero S ZF9", "Zero S ZF12", "Zero S ZF14", "Zero DS ZF9", "Zero DS ZF12", "Zero DS ZF14", "Zero DSR ZF14",
-    "Zero DSR ZF14.4", "Zero DSR ZF15.6", "Zero DSR ZF17.3", "Zero SR/F ZF14.4", "Zero SR/F ZF17.3", "Zero SR/S ZF14.4", "Zero SR/S ZF17.3"
-    ],
-  },
   Tires: [
     "Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid", "Pirelli Scorpion", "Michelin Wild Enduro"
   ],
