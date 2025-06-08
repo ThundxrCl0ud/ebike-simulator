@@ -1188,7 +1188,12 @@ export default function EBikeCustomizer() {
                 {color}
               </button>
             ))
-          : parts[activeCategory].map((option) => (
+          : (
+    Array.isArray(parts[activeCategory])
+      ? parts[activeCategory]
+      : Object.values(parts[activeCategory] ?? {}).flat()
+  ).map((option) => (
+
               <button
                 key={option}
                 onClick={() => updatePart(activeCategory, option)}
