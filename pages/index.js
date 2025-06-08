@@ -121,7 +121,9 @@ const parts = {
   },
   Bikes: {
   Talaria: [
-    "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", "Talaria Sting R MX4", "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept", "Talaria X3 L1E Road Legal", "Talaria XXX Black Edition"
+  "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", "Talaria Sting R MX4",
+  "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept",
+  "Talaria X3 L1E Road Legal", "Talaria XXX Black Edition"
     ],
   },
   Tires: [
