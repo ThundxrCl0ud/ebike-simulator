@@ -1170,33 +1170,66 @@ export default function EBikeCustomizer() {
         </div>
       )}
 {activeCategory === "bikes" && (
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 12,
-      marginBottom: 12,
-    }}
-  >
-    {Object.keys(parts.bikes).map((brand) => (
-      <button
-        key={brand}
-        onClick={() => setBikeCategory(brand)}
-        style={{
-          padding: "6px 12px",
-          borderRadius: 6,
-          cursor: "pointer",
-          backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
-          color: bikeCategory === brand ? "#fff" : "#000",
-          fontWeight: "600",
-          fontSize: 14,
-          border: "none",
-        }}
-      >
-        {brand}
-      </button>
-    ))}
-  </div>
+  <>
+    {/* Brand selector buttons */}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 12,
+        marginBottom: 12,
+      }}
+    >
+      {Object.keys(parts.bikes).map((brand) => (
+        <button
+          key={brand}
+          onClick={() => setBikeCategory(brand)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: 6,
+            cursor: "pointer",
+            backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
+            color: bikeCategory === brand ? "#fff" : "#000",
+            fontWeight: "600",
+            fontSize: 14,
+            border: "none",
+          }}
+        >
+          {brand}
+        </button>
+      ))}
+    </div>
+
+    {/* Bikes from the selected brand */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: 12,
+      }}
+    >
+      {(parts.bikes[bikeCategory] || []).map((bike) => (
+        <button
+          key={bike}
+          onClick={() => updatePart("bikes", bike)}
+          style={{
+            padding: 12,
+            borderRadius: 8,
+            border:
+              config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
+            backgroundColor:
+              config.bikes === bike ? "#e6f0ff" : "#fff",
+            cursor: "pointer",
+            fontWeight: config.bikes === bike ? "700" : "500",
+            fontSize: 16,
+            userSelect: "none",
+          }}
+        >
+          {bike}
+        </button>
+      ))}
+    </div>
+  </>
 )}
 
       {/* Options Grid */}
