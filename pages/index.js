@@ -1172,23 +1172,20 @@ export default function EBikeCustomizer() {
         }}
       >
         {activeCategory === "frameColor"
-          ? filteredColors.map((color) => (
-              <button
-                key={color}
-                style={{
-                  ...getColorButtonStyle(color),
-                  border:
-                    config.frameColor === color ? "3px solid #0070f3" : "1px solid #ccc",
-                  boxShadow:
-                    config.frameColor === color ? "0 0 8px #0070f3" : "none",
-                }}
+          : (Array.isArray(parts[activeCategory])
+      ? parts[activeCategory]
+      : Object.values(parts[activeCategory] ?? {}).flat()
+    ).map((option) => (
+      ...
+    ))}
                 onClick={() => updatePart("frameColor", color)}
                 title={color}
               >
                 {color}
               </button>
             ))
-          : parts[activeCategory].map((option) => (
+          : (Object.values(parts[activeCategory] ?? {})).flat().map((option) => (
+
               <button
                 key={option}
                 onClick={() => updatePart(activeCategory, option)}
