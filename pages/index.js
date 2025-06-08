@@ -1056,6 +1056,7 @@ export default function EBikeCustomizer() {
   const [activeCategory, setActiveCategory] = useState("frameColor");
   const [colorCategory, setColorCategory] = useState("Basic");
   const [searchTerm, setSearchTerm] = useState("");
+  const [bikeCategory, setBikeCategory] = useState(Object.keys(parts.bikes)[0]);
 
   // Only show search bar when activeCategory is frameColor
   const showSearch = activeCategory === "frameColor";
@@ -1096,10 +1097,11 @@ export default function EBikeCustomizer() {
           <button
             key={part}
             onClick={() => {
-              setActiveCategory(part);
-              setSearchTerm("");
-              if (part === "frameColor") setColorCategory("Basic");
-            }}
+  setActiveCategory(part);
+  setSearchTerm("");
+  if (part === "frameColor") setColorCategory("Basic");
+  if (part === "bikes") setBikeCategory(Object.keys(parts.bikes)[0]);
+}}
             style={{
               padding: "8px 16px",
               borderRadius: 6,
@@ -1162,6 +1164,35 @@ export default function EBikeCustomizer() {
           ))}
         </div>
       )}
+{activeCategory === "bikes" && (
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 12,
+      marginBottom: 12,
+    }}
+  >
+    {Object.keys(parts.bikes).map((brand) => (
+      <button
+        key={brand}
+        onClick={() => setBikeCategory(brand)}
+        style={{
+          padding: "6px 12px",
+          borderRadius: 6,
+          cursor: "pointer",
+          backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
+          color: bikeCategory === brand ? "#fff" : "#000",
+          fontWeight: "600",
+          fontSize: 14,
+          border: "none",
+        }}
+      >
+        {brand}
+      </button>
+    ))}
+  </div>
+)}
 
       {/* Options Grid */}
       <div
