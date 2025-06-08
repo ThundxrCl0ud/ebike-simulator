@@ -988,52 +988,44 @@ function getColorButtonStyle(option) {
   "Sparkly Ocean Blue": "#8DB600",
   };
 
-  
-const getColorButtonStyle = (option) => {
-  const colorMap = Object.values(parts.frameColor || {}).flat().reduce((acc, color) => {
-    // Example mapping — you can customize with real hex codes
-    // Here we assume each color string corresponds to a hex in some dictionary you provide
-    // For demo, simple mapping:
-    const name = color.toLowerCase();
-    if (name.includes("red")) return { ...acc, [color]: "#d32f2f" };
-    if (name.includes("blue")) return { ...acc, [color]: "#1976d2" };
-    if (name.includes("green")) return { ...acc, [color]: "#388e3c" };
-    if (name.includes("yellow")) return { ...acc, [color]: "#fbc02d" };
-    if (name.includes("black")) return { ...acc, [color]: "#222" };
-    if (name.includes("white")) return { ...acc, [color]: "#eee" };
-    // fallback for unknown
-    return { ...acc, [color]: "#ccc" };
-  }, {});
-
-  const backgroundColor = colorMap[option] || "#fff";
-  let style = { 
-    padding: 12,
-    borderRadius: 8,
-    backgroundColor,
-    color: "#000",
-    fontWeight: "600",
-    fontSize: 14,
-    userSelect: "none",
+  const baseStyle = {
+    padding: "8px",
+    borderRadius: "6px",
     border: "1px solid #ccc",
     cursor: "pointer",
-    ...baseStyle,
+    userSelect: "none",
+    minWidth: "80px",
+    textAlign: "center",
+    fontWeight: "600",
+    fontSize: "0.9rem",
+    color: "#000",
+    transition: "all 0.3s ease",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   };
+
+  const backgroundColor = colorMap[option] || "#fff";
+  let style = { ...baseStyle, backgroundColor };
 
   // Neon glow effect
   if (option.startsWith("Neon")) {
     style.color = "#fff";
     style.textShadow = `0 0 6px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
   }
+
   // Matte - dull the color a bit
   else if (option.startsWith("Matte")) {
     style.filter = "brightness(0.75) saturate(0.6)";
     style.color = "#fff";
   }
+
   // Metallic - subtle gradient shine
   else if (option.startsWith("Metallic")) {
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #eee 60%, ${backgroundColor} 90%)`;
     style.color = "#222";
   }
+
   // Flake/Sparkle - simulated sparkle pattern
   else if (
     option.includes("Flake") ||
@@ -1049,7 +1041,7 @@ const getColorButtonStyle = (option) => {
   }
 
   return style;
-};
+}
 
 export default function EBikeCustomizer() {
   const [config, setConfig] = useState(
@@ -1065,20 +1057,19 @@ export default function EBikeCustomizer() {
   const [colorCategory, setColorCategory] = useState("Basic");
   const [searchTerm, setSearchTerm] = useState("");
   const [bikeCategory, setBikeCategory] = useState(() => {
-    const bikeKeys = Object.keys(parts?.bikes || {});
-    return bikeKeys.length > 0 ? bikeKeys[0] : null;
-  });
-
+  const bikeKeys = Object.keys(parts?.bikes || {});
+  return bikeKeys.length > 0 ? bikeKeys[0] : null;
+});
   // Only show search bar when activeCategory is frameColor
   const showSearch = activeCategory === "frameColor";
 
   // List of categories for frameColor
   const colorCategories = useMemo(() => {
-    if (activeCategory === "frameColor") {
-      return Object.keys(parts?.frameColor || {});
-    }
-    return [];
-  }, [activeCategory]);
+  if (activeCategory === "frameColor") {
+    return Object.keys(parts?.frameColor || {});
+  }
+  return [];
+}, [activeCategory]);
 
   // Filter colors by selected colorCategory and search term
   const filteredColors = useMemo(() => {
@@ -1108,14 +1099,14 @@ export default function EBikeCustomizer() {
           <button
             key={part}
             onClick={() => {
-              setActiveCategory(part);
-              setSearchTerm("");
-              if (part === "frameColor") setColorCategory("Basic");
-              if (part === "bikes") {
-                const bikeKeys = Object.keys(parts?.bikes || {});
-                setBikeCategory(bikeKeys.length > 0 ? bikeKeys[0] : null);
-              }
-            }}
+  setActiveCategory(part);
+  setSearchTerm("");
+  if (part === "frameColor") setColorCategory("Basic");
+  if (part === "bikes") {
+  const bikeKeys = Object.keys(parts?.bikes || {});
+  setBikeCategory(bikeKeys.length > 0 ? bikeKeys[0] : null);
+}
+}}
             style={{
               padding: "8px 16px",
               borderRadius: 6,
@@ -1178,68 +1169,68 @@ export default function EBikeCustomizer() {
           ))}
         </div>
       )}
+{activeCategory === "bikes" && (
+  <>
+    {/* Brand selector buttons */}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 12,
+        marginBottom: 12,
+      }}
+    >
+      {Object.keys(parts.bikes).map((brand) => (
+        <button
+          key={brand}
+          onClick={() => setBikeCategory(brand)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: 6,
+            cursor: "pointer",
+            backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
+            color: bikeCategory === brand ? "#fff" : "#000",
+            fontWeight: "600",
+            fontSize: 14,
+            border: "none",
+          }}
+        >
+          {brand}
+        </button>
+      ))}
+    </div>
 
-      {/* Bikes category brand selector */}
-      {activeCategory === "bikes" && (
-        <>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-              marginBottom: 12,
-            }}
-          >
-            {Object.keys(parts.bikes).map((brand) => (
-              <button
-                key={brand}
-                onClick={() => setBikeCategory(brand)}
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: 6,
-                  cursor: "pointer",
-                  backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
-                  color: bikeCategory === brand ? "#fff" : "#000",
-                  fontWeight: "600",
-                  fontSize: 14,
-                  border: "none",
-                }}
-              >
-                {brand}
-              </button>
-            ))}
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 12,
-            }}
-          >
-            {(parts.bikes[bikeCategory] || []).map((bike) => (
-              <button
-                key={bike}
-                onClick={() => updatePart("bikes", bike)}
-                style={{
-                  padding: 12,
-                  borderRadius: 8,
-                  border:
-                    config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
-                  backgroundColor:
-                    config.bikes === bike ? "#e6f0ff" : "#fff",
-                  cursor: "pointer",
-                  fontWeight: config.bikes === bike ? "700" : "500",
-                  fontSize: 16,
-                  userSelect: "none",
-                }}
-              >
-                {bike}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+    {/* Bikes from the selected brand */}
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+        gap: 12,
+      }}
+    >
+      {(parts.bikes[bikeCategory] || []).map((bike) => (
+        <button
+          key={bike}
+          onClick={() => updatePart("bikes", bike)}
+          style={{
+            padding: 12,
+            borderRadius: 8,
+            border:
+              config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
+            backgroundColor:
+              config.bikes === bike ? "#e6f0ff" : "#fff",
+            cursor: "pointer",
+            fontWeight: config.bikes === bike ? "700" : "500",
+            fontSize: 16,
+            userSelect: "none",
+          }}
+        >
+          {bike}
+        </button>
+      ))}
+    </div>
+  </>
+)}
 
       {/* Options Grid */}
       <div
@@ -1267,10 +1258,11 @@ export default function EBikeCustomizer() {
               </button>
             ))
           : (
-              Array.isArray(parts[activeCategory])
-                ? parts[activeCategory]
-                : Object.values(parts[activeCategory] || {}).flat()
-            ).map((option) => (
+    Array.isArray(parts[activeCategory])
+      ? parts[activeCategory]
+      : Object.values(parts[activeCategory] || {}).flat()
+  ).map((option) => (
+
               <button
                 key={option}
                 onClick={() => updatePart(activeCategory, option)}
