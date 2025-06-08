@@ -1056,18 +1056,20 @@ export default function EBikeCustomizer() {
   const [activeCategory, setActiveCategory] = useState("frameColor");
   const [colorCategory, setColorCategory] = useState("Basic");
   const [searchTerm, setSearchTerm] = useState("");
-  const [bikeCategory, setBikeCategory] = useState(Object.keys(parts.bikes)[0]);
-
+  const [bikeCategory, setBikeCategory] = useState(() => {
+  const bikeKeys = Object.keys(parts?.bikes || {});
+  return bikeKeys.length > 0 ? bikeKeys[0] : null;
+});
   // Only show search bar when activeCategory is frameColor
   const showSearch = activeCategory === "frameColor";
 
   // List of categories for frameColor
   const colorCategories = useMemo(() => {
-    if (activeCategory === "frameColor") {
-      return Object.keys(parts.frameColor);
-    }
-    return [];
-  }, [activeCategory]);
+  if (activeCategory === "frameColor") {
+    return Object.keys(parts?.frameColor || {});
+  }
+  return [];
+}, [activeCategory]);
 
   // Filter colors by selected colorCategory and search term
   const filteredColors = useMemo(() => {
@@ -1093,14 +1095,17 @@ export default function EBikeCustomizer() {
 
       {/* Category tabs */}
       <div style={{ display: "flex", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
-        {Object.keys(parts).map((part) => (
+        {Object.keys(parts || {}).map((part) => (
           <button
             key={part}
             onClick={() => {
   setActiveCategory(part);
   setSearchTerm("");
   if (part === "frameColor") setColorCategory("Basic");
-  if (part === "bikes") setBikeCategory(Object.keys(parts.bikes)[0]);
+  if (part === "bikes") {
+  const bikeKeys = Object.keys(parts?.bikes || {});
+  setBikeCategory(bikeKeys.length > 0 ? bikeKeys[0] : null);
+}
 }}
             style={{
               padding: "8px 16px",
@@ -1222,7 +1227,7 @@ export default function EBikeCustomizer() {
           : (
     Array.isArray(parts[activeCategory])
       ? parts[activeCategory]
-      : Object.values(parts[activeCategory] ?? {}).flat()
+      : Object.values(parts[activeCategory] || {}).flat()
   ).map((option) => (
 
               <button
