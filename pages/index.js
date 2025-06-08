@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 
 const parts = {
   frameColor: {
-    Basic: [
+    basic: [
   "Apple Green", "Aquamarine", "Ash Gray", "Azure", "Beige", "Black", "Blush", "Blue", "Bronze", "Brown", "Burgundy", "Cerulean", "Charcoal",
   "Chartreuse", "Cherry Red", "Chocolate", "Cobalt Blue", "Copper", "Copper Red", "Coral", "Cream", "Crimson", "Cyan", "Dark Blue", "Dark Gray",
   "Dark Green", "Dark Orange", "Dark Red", "Eggplant", "Electric Blue", "Fern", "Firebrick", "Forest Green", "Gold", "Gray", "Green", "Indigo",
