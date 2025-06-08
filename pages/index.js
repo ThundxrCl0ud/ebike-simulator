@@ -119,39 +119,75 @@ const parts = {
   "Candy Fire Engine Red Flake", "Sparkly Ocean Blue"
     ],
   },
+  Parts: {
   Bikes: {
-  "Stark Varg": [
-    "Stark Varg MX (standard, 2021–2023)", "Stark Varg MX Alpha (80 hp)", "Stark Varg EX 60 hp (2025 enduro)", "Stark Varg EX Alpha 80 hp",
+    "Stark Varg": [
+      "Stark Varg MX (standard, 2021–2023)", 
+      "Stark Varg MX Alpha (80 hp)", 
+      "Stark Varg EX 60 hp (2025 enduro)", 
+      "Stark Varg EX Alpha 80 hp"
     ],
-  Talaria: [
-    "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", "Talaria Sting R MX4",
-    "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept",
-    "Talaria X3 L1E Road Legal", "Talaria XXX Black Edition"
+    "Talaria": [
+      "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", 
+      "Talaria Sting R MX4", "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", 
+      "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept", 
+      "Talaria X3 L1E Road Legal", "Talaria XXX Black Edition"
     ],
-  "Sur-Ron": [
-    "Sur-Ron Light Bee L1E", "Sur-Ron Light Bee X", "Sur-Ron Ultra Bee", "Sur-Ron Ultra Bee T", "Sur-Ron Ultra Bee X", "Sur-Ron Storm Bee", 
-    "Sur-Ron Storm Bee F", "Sur-Ron Storm Bee R", "Sur-Ron Hyper Bee"
+    "Sur-Ron": [
+      "Sur-Ron Light Bee L1E", "Sur-Ron Light Bee X", "Sur-Ron Ultra Bee", "Sur-Ron Ultra Bee T", 
+      "Sur-Ron Ultra Bee X", "Sur-Ron Storm Bee", "Sur-Ron Storm Bee F", "Sur-Ron Storm Bee R", 
+      "Sur-Ron Hyper Bee"
     ],
-  eMoto: [
-    "E‑Ride Pro Mini",
-    "E‑Ride Pro S", "E‑Ride Pro SS 2.0", "E‑Ride Pro SS 3.0", "E‑Ride Pro SR", "E‑Box 2.0"
+    "eMoto": [
+      "E‑Ride Pro Mini", "E‑Ride Pro S", "E‑Ride Pro SS 2.0", "E‑Ride Pro SS 3.0", 
+      "E‑Ride Pro SR", "E‑Box 2.0"
     ],
-  Tuttio: [
-    "Tuttio Soleil01 Electric Mini Bike", "Tuttio Seeker24 Dual Motor Electric Bike", "Tuttio Adria26 Dual Motor Electric Bike",
-    "Tuttio ARC‑I Kids Electric Bike", "Tuttio ICT Electric Dirt Bike", "Tuttio C6 PRO Electric City Bike"
+    "Tuttio": [
+      "Tuttio Soleil01 Electric Mini Bike", "Tuttio Seeker24 Dual Motor Electric Bike", 
+      "Tuttio Adria26 Dual Motor Electric Bike", "Tuttio ARC‑I Kids Electric Bike", 
+      "Tuttio ICT Electric Dirt Bike", "Tuttio C6 PRO Electric City Bike"
     ],
-  Ridstar: [
-    "Ridstar Q20 Lite 1000W", "Ridstar Q20 1200W", "Ridstar Q20 1500W", "Ridstar Q20 Pro 2000W", "Ridstar Q20 Pro Dual Motor",
-    "Ridstar Q20 Luxe 1500W", "Ridstar Q16 1500W", "Ridstar CR20 1500W", "Ridstar H20 1000W", "Ridstar H20 1200W", "Ridstar H20 Pro 2000W",
-    "Ridstar MN20 1000W Foldable", "Ridstar MN26 1500W", "Ridstar FM001 2‑Seater", "Ridstar DC26 2000W Folding", "Ridstar E26 Pro 1000W Fat Tire",
-    "Ridstar Q20 Mini Fat Tire"
+    "Ridstar": [
+      "Ridstar Q20 Lite 1000W", "Ridstar Q20 1200W", "Ridstar Q20 1500W", "Ridstar Q20 Pro 2000W", 
+      "Ridstar Q20 Pro Dual Motor", "Ridstar Q20 Luxe 1500W", "Ridstar Q16 1500W", 
+      "Ridstar CR20 1500W", "Ridstar H20 1000W", "Ridstar H20 1200W", "Ridstar H20 Pro 2000W", 
+      "Ridstar MN20 1000W Foldable", "Ridstar MN26 1500W", "Ridstar FM001 2‑Seater", 
+      "Ridstar DC26 2000W Folding", "Ridstar E26 Pro 1000W Fat Tire", "Ridstar Q20 Mini Fat Tire"
     ],
-  Razor: [
-    "Razor MX350 Dirt Rocket", "Razor MX400 Dirt Rocket", "Razor MX500 Dirt Rocket", "Razor MX650 Dirt Rocket", "Razor Dirt Rocket Pro Spec", "Razor MX125 Dirt Rocket"
+    "Razor": [
+      "Razor MX350 Dirt Rocket", "Razor MX400 Dirt Rocket", "Razor MX500 Dirt Rocket", 
+      "Razor MX650 Dirt Rocket", "Razor Dirt Rocket Pro Spec", "Razor MX125 Dirt Rocket"
     ],
-  Cake: [
-    "Cake Kalk OR", "Cake Kalk INK", "Cake Kalk INK SL", "Cake Kalk AP", "Cake Ösa Lite", "Cake Ösa Flex", "Cake Ösa+","Cake Makka"
+    "Cake": [
+      "Cake Kalk OR", "Cake Kalk INK", "Cake Kalk INK SL", "Cake Kalk AP", "Cake Ösa Lite", 
+      "Cake Ösa Flex", "Cake Ösa+", "Cake Makka"
     ],
+    "Kuberg": [
+      "Kuberg Freerider 8kW", "Kuberg Freerider 12kW", "Kuberg Freerider 14kW", 
+      "Kuberg Freerider Street 4kW", "Kuberg Ranger 8kW", "Kuberg Ranger 12kW", 
+      "Kuberg Ranger 14kW"
+    ],
+    "Onyx": [
+      "Onyx CTY", "Onyx RCR", "Onyx RCR LTD", "Onyx RCR Street", "Onyx LZR", "Onyx LZR Pro"
+    ],
+    "Fantic": [
+      "Fantic XF2 Integra", "Fantic XF2 Fat Sport", "Fantic XMF 1.7", "Fantic XMF 1.7 Carbon", 
+      "Fantic XEF 1.9 Race", "Fantic XEF 1.9 Factory", "Fantic XEF 1.9 Carbon Team", 
+      "Fantic Issimo Urban", "Fantic Issimo Fun"
+    ],
+    "Bultaco": [
+      "Bultaco Brinco R", "Bultaco Brinco RB", "Bultaco Brinco S", "Bultaco Brinco C", 
+      "Bultaco Albero", "Bultaco Rapitán", "Bultaco Pursang E-Track"
+    ],
+    "Zero": [
+      "Zero S", "Zero SR", "Zero SR/F", "Zero SR/S", "Zero DSR", "Zero DSR/X", "Zero FX", 
+      "Zero FXE", "Zero FXE-2", "Zero XB", "Zero XE", "Zero XU", "Zero MX", "Zero MXR", 
+      "Zero S ZF9", "Zero S ZF12", "Zero S ZF14", "Zero DS ZF9", "Zero DS ZF12", 
+      "Zero DS ZF14", "Zero DSR ZF14", "Zero DSR ZF14.4", "Zero DSR ZF15.6", "Zero DSR ZF17.3", 
+      "Zero SR/F ZF14.4", "Zero SR/F ZF17.3", "Zero SR/S ZF14.4", "Zero SR/S ZF17.3"
+    ]
+  }
+}
   Kuberg: [
     "Kuberg Freerider 8kW", "Kuberg Freerider 12kW", "Kuberg Freerider 14kW", "Kuberg Freerider Street 4kW", "Kuberg Ranger 8kW",
     "Kuberg Ranger 12kW", "Kuberg Ranger 14kW"
