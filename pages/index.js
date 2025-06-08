@@ -573,7 +573,7 @@ function getColorButtonStyle(option) {
 "Metallic Gunmetal": "#2a3439",
 "Metallic Titanium": "#878681",
 "Metallic Rose Gold": "#B76E79",
-"Metallic Chrome": "#DADADA"
+"Metallic Chrome": "#DADADA",
 "Metallic Aluminum": "#A9A9A9",
 "Metallic Brass": "#B5A642",
 "Metallic Bronze Olive": "#6B584C",
