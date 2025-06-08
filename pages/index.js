@@ -119,6 +119,9 @@ const parts = {
   "Candy Fire Engine Red Flake", "Sparkly Ocean Blue"
     ],
   },
+  Bikes: [
+    "Talaria StingR MX4",
+  ],  
   Tires: [
     "Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid", "Pirelli Scorpion", "Michelin Wild Enduro"
   ],
