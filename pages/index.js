@@ -119,9 +119,11 @@ const parts = {
   "Candy Fire Engine Red Flake", "Sparkly Ocean Blue"
     ],
   },
-  Bikes: [
-    "Talaria StingR MX4",
-  ],  
+  Bikes: {
+  Talaria: [
+    "Talaria Sting MX3", "Talaria Sting MX4", "Talaria Sting MX5", "Talaria Sting MX5 Pro", "Talaria Sting R MX4", "Talaria Sting R MX4 Expert Edition", "Talaria Sting R SX4", "Talaria Sting 60V Road Legal", "Talaria Dragon", "Talaria X3 Concept", "Talaria X3 L1E Road Legal", "Talaria XXX Black Edition"
+    ],
+  },
   Tires: [
     "Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid", "Pirelli Scorpion", "Michelin Wild Enduro"
   ],
