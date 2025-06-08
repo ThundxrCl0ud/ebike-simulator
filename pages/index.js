@@ -119,7 +119,6 @@ const parts = {
   "Candy Fire Engine Red Flake", "Sparkly Ocean Blue"
     ],
   },
-  Parts: {
   Bikes: {
     "Stark Varg": [
       "Stark Varg MX (standard, 2021–2023)", 
@@ -186,8 +185,7 @@ const parts = {
       "Zero DS ZF14", "Zero DSR ZF14", "Zero DSR ZF14.4", "Zero DSR ZF15.6", "Zero DSR ZF17.3", 
       "Zero SR/F ZF14.4", "Zero SR/F ZF17.3", "Zero SR/S ZF14.4", "Zero SR/S ZF17.3"
     ]
-  }
-},
+  },
   Tires: [
     "Shinko SR241", "Dunlop MX53", "Kenda K270", "Maxxis Minion DHF", "Hybrid", "Pirelli Scorpion", "Michelin Wild Enduro"
   ],
