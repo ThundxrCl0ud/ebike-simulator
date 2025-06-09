@@ -1218,34 +1218,35 @@ export default function EBikeCustomizer() {
     </div>
 
     {/* Bikes from the selected brand */}
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-        gap: 12,
-      }}
-    >
-      {(parts.bikes[bikeCategory] || []).map((bike) => (
-        <button
-          key={bike}
-          onClick={() => updatePart("bikes", bike)}
-          style={{
-            padding: 12,
-            borderRadius: 8,
-            border:
-              config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
-            backgroundColor:
-              config.bikes === bike ? "#e6f0ff" : "#fff",
-            cursor: "pointer",
-            fontWeight: config.bikes === bike ? "700" : "500",
-            fontSize: 16,
-            userSelect: "none",
-          }}
-        >
-          {bike}
-        </button>
-      ))}
-    </div>
+    {bikeCategory && (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: 12,
+        }}
+      >
+        {(parts.bikes[bikeCategory] || []).map((bike) => (
+          <button
+            key={bike}
+            onClick={() => updatePart("bikes", bike)}
+            style={{
+              padding: 12,
+              borderRadius: 8,
+              border:
+                config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
+              backgroundColor: config.bikes === bike ? "#e6f0ff" : "#fff",
+              cursor: "pointer",
+              fontWeight: config.bikes === bike ? "700" : "500",
+              fontSize: 16,
+              userSelect: "none",
+            }}
+          >
+            {bike}
+          </button>
+        ))}
+      </div>
+    )}
   </>
 )}
 
