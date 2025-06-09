@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 
 const parts = {
-       Bikes: {
+       bikes: {
     "Stark Varg": [
       "Stark Varg MX (standard, 2021–2023)", 
       "Stark Varg MX Alpha (80 hp)", 
