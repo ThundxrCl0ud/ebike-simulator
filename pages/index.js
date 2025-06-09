@@ -1073,13 +1073,13 @@ export default function EBikeCustomizer() {
   const [activeCategory, setActiveCategory] = useState("frameColor");
   const [colorCategory, setColorCategory] = useState("Basic");
   const [searchTerm, setSearchTerm] = useState("");
-  const [bikeCategory, setBikeCategory] = useState(null);
+  const [bikeCategory, setBikeCategory] = useState(() => {
   const bikeKeys = Object.keys(parts?.bikes || {});
   return bikeKeys.length > 0 ? bikeKeys[0] : null;
-};
-  // Only show search bar when activeCategory is frameColor or bikes
+});
+  // Only show search bar when activeCategory is frameColor
   const showSearch = activeCategory === "frameColor";
-  const showSearch = activeCategory === "bikes";
+
   // List of categories for frameColor
   const colorCategories = useMemo(() => {
   if (activeCategory === "frameColor") {
