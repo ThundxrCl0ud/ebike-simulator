@@ -1076,10 +1076,10 @@ export default function EBikeCustomizer() {
   const [bikeCategory, setBikeCategory] = useState(null);
   const bikeKeys = Object.keys(parts?.bikes || {});
   return bikeKeys.length > 0 ? bikeKeys[0] : null;
-});
-  // Only show search bar when activeCategory is frameColor
+};
+  // Only show search bar when activeCategory is frameColor or bikes
   const showSearch = activeCategory === "frameColor";
-
+  const showSearch = activeCategory === "bikes";
   // List of categories for frameColor
   const colorCategories = useMemo(() => {
   if (activeCategory === "frameColor") {
