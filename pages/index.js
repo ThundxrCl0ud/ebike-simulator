@@ -1085,26 +1085,16 @@ function getColorButtonStyle(option, colorMap) {
   const backgroundColor = colorMap[option] || "#fff";
   let style = { ...baseStyle, backgroundColor };
 
-  // Neon glow effect
   if (option.startsWith("Neon")) {
     style.color = "#fff";
     style.textShadow = `0 0 6px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
-  }
-
-  // Matte - dull the color a bit
-  else if (option.startsWith("Matte")) {
+  } else if (option.startsWith("Matte")) {
     style.filter = "brightness(0.75) saturate(0.6)";
     style.color = "#fff";
-  }
-
-  // Metallic - subtle gradient shine
-  else if (option.startsWith("Metallic")) {
+  } else if (option.startsWith("Metallic")) {
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #eee 60%, ${backgroundColor} 90%)`;
     style.color = "#222";
-  }
-
-  // Flake/Sparkle - simulated sparkle pattern
-  else if (
+  } else if (
     option.includes("Flake") ||
     option.includes("Sparkle") ||
     option.includes("Holographic") ||
@@ -1120,7 +1110,7 @@ function getColorButtonStyle(option, colorMap) {
   return style;
 }
 
-function EBikeCustomizer({ parts = {}, colorMap = {} }) {
+export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
   const [config, setConfig] = React.useState(() =>
     Object.fromEntries(
       Object.entries(parts).map(([key, value]) =>
@@ -1178,7 +1168,6 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         E-Bike Customizer Simulator
       </h1>
 
-      {/* Category tabs */}
       <div style={{ display: "flex", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
         {Object.keys(parts || {}).map((part) => (
           <button
@@ -1206,7 +1195,6 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         ))}
       </div>
 
-      {/* Search bar (for frameColor and bikes) */}
       {showSearch && (
         <input
           type="text"
@@ -1224,16 +1212,8 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         />
       )}
 
-      {/* If frameColor category, show color categories */}
       {activeCategory === "frameColor" && (
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-            marginBottom: 12,
-            flexWrap: "wrap",
-          }}
-        >
+        <div style={{ display: "flex", gap: 12, marginBottom: 12, flexWrap: "wrap" }}>
           {colorCategories.map((cat) => (
             <button
               key={cat}
@@ -1255,18 +1235,9 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         </div>
       )}
 
-      {/* Bikes category brand selector and filtered bike list */}
       {activeCategory === "bikes" && (
         <>
-          {/* Brand selector buttons */}
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-              marginBottom: 12,
-            }}
-          >
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 12 }}>
             {Object.keys(parts.bikes || {}).map((brand) => (
               <button
                 key={brand}
@@ -1290,7 +1261,6 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
             ))}
           </div>
 
-          {/* Bikes from the selected brand filtered by search */}
           <div
             style={{
               display: "grid",
@@ -1320,7 +1290,6 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         </>
       )}
 
-      {/* Options Grid for other categories (including frameColor) */}
       <div
         style={{
           display: "grid",
@@ -1347,10 +1316,9 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
               </button>
             ))
           : activeCategory !== "bikes" &&
-            (
-              Array.isArray(parts[activeCategory])
-                ? parts[activeCategory]
-                : Object.values(parts[activeCategory] || {}).flat()
+            (Array.isArray(parts[activeCategory])
+              ? parts[activeCategory]
+              : Object.values(parts[activeCategory] || {}).flat()
             ).map((option) => (
               <button
                 key={option}
@@ -1375,7 +1343,6 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
             ))}
       </div>
 
-      {/* Config Summary */}
       <div
         style={{
           marginTop: 36,
