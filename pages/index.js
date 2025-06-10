@@ -1085,26 +1085,16 @@ function getColorButtonStyle(option, colorMap) {
   const backgroundColor = colorMap[option] || "#fff";
   let style = { ...baseStyle, backgroundColor };
 
-  // Neon glow effect
   if (option.startsWith("Neon")) {
     style.color = "#fff";
     style.textShadow = `0 0 6px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
-  }
-
-  // Matte - dull the color a bit
-  else if (option.startsWith("Matte")) {
+  } else if (option.startsWith("Matte")) {
     style.filter = "brightness(0.75) saturate(0.6)";
     style.color = "#fff";
-  }
-
-  // Metallic - subtle gradient shine
-  else if (option.startsWith("Metallic")) {
+  } else if (option.startsWith("Metallic")) {
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #eee 60%, ${backgroundColor} 90%)`;
     style.color = "#222";
-  }
-
-  // Flake/Sparkle - simulated sparkle pattern
-  else if (
+  } else if (
     option.includes("Flake") ||
     option.includes("Sparkle") ||
     option.includes("Holographic") ||
@@ -1138,10 +1128,8 @@ export default function EBikeCustomizer({ parts, colorMap }) {
     return bikeKeys.length > 0 ? bikeKeys[0] : null;
   });
 
-  // Show search bar only for frameColor and bikes categories
   const showSearch = activeCategory === "frameColor" || activeCategory === "bikes";
 
-  // List of categories for frameColor
   const colorCategories = useMemo(() => {
     if (activeCategory === "frameColor") {
       return Object.keys(parts?.frameColor || {});
@@ -1149,7 +1137,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
     return [];
   }, [activeCategory, parts]);
 
-  // Filter colors by selected colorCategory and search term
   const filteredColors = useMemo(() => {
     if (activeCategory !== "frameColor") return [];
 
@@ -1161,7 +1148,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
     return colors;
   }, [activeCategory, colorCategory, searchTerm, parts]);
 
-  // Filter bikes by selected brand and search term
   const filteredBikes = useMemo(() => {
     if (activeCategory !== "bikes" || !bikeCategory) return [];
 
@@ -1183,7 +1169,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
         E-Bike Customizer Simulator
       </h1>
 
-      {/* Category tabs */}
       <div style={{ display: "flex", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
         {Object.keys(parts || {}).map((part) => (
           <button
@@ -1211,7 +1196,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
         ))}
       </div>
 
-      {/* Search bar (for frameColor and bikes) */}
       {showSearch && (
         <input
           type="text"
@@ -1229,7 +1213,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
         />
       )}
 
-      {/* If frameColor category, show color categories */}
       {activeCategory === "frameColor" && (
         <div
           style={{
@@ -1260,10 +1243,8 @@ export default function EBikeCustomizer({ parts, colorMap }) {
         </div>
       )}
 
-      {/* Bikes category brand selector and filtered bike list */}
       {activeCategory === "bikes" && (
         <>
-          {/* Brand selector buttons */}
           <div
             style={{
               display: "flex",
@@ -1295,7 +1276,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
             ))}
           </div>
 
-          {/* Bikes from the selected brand filtered by search */}
           <div
             style={{
               display: "grid",
@@ -1310,8 +1290,7 @@ export default function EBikeCustomizer({ parts, colorMap }) {
                 style={{
                   padding: 12,
                   borderRadius: 8,
-                  border:
-                    config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
+                  border: config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
                   backgroundColor: config.bikes === bike ? "#e6f0ff" : "#fff",
                   cursor: "pointer",
                   fontWeight: config.bikes === bike ? "700" : "500",
@@ -1326,7 +1305,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
         </>
       )}
 
-      {/* Options Grid for other categories (including frameColor) */}
       <div
         style={{
           display: "grid",
@@ -1343,12 +1321,8 @@ export default function EBikeCustomizer({ parts, colorMap }) {
                 key={color}
                 style={{
                   ...getColorButtonStyle(color, colorMap),
-                  border:
-                    config.frameColor === color
-                      ? "3px solid #0070f3"
-                      : "1px solid #ccc",
-                  boxShadow:
-                    config.frameColor === color ? "0 0 8px #0070f3" : "none",
+                  border: config.frameColor === color ? "3px solid #0070f3" : "1px solid #ccc",
+                  boxShadow: config.frameColor === color ? "0 0 8px #0070f3" : "none",
                 }}
                 onClick={() => updatePart("frameColor", color)}
                 title={color}
@@ -1371,7 +1345,7 @@ export default function EBikeCustomizer({ parts, colorMap }) {
                   border:
                     config[activeCategory] === option
                       ? "3px solid #0070f3"
-                      : "1px solid "#ccc",
+                      : "1px solid #ccc",
                   backgroundColor:
                     config[activeCategory] === option ? "#e6f0ff" : "#fff",
                   cursor: "pointer",
@@ -1385,7 +1359,6 @@ export default function EBikeCustomizer({ parts, colorMap }) {
             ))}
       </div>
 
-      {/* Config Summary */}
       <div
         style={{
           marginTop: 36,
