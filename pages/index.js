@@ -1398,4 +1398,4 @@ function EBikeCustomizer({ parts = {}, colorMap = {} }) {
       </div>
     </div>
   );
-};
+}
