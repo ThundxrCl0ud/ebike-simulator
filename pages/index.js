@@ -1110,7 +1110,6 @@ function getColorButtonStyle(option, colorMap) {
   return style;
 }
 
-export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
   const [config, setConfig] = React.useState(() =>
     Object.fromEntries(
       Object.entries(parts).map(([key, value]) =>
