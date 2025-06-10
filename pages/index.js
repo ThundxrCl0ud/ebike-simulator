@@ -1064,7 +1064,7 @@ function getColorButtonStyle(option) {
   "Sparkly Ocean Blue": "#8DB600",
   };
 
-  const baseStyle = {
+const baseStyle = {
   padding: "8px",
   borderRadius: "6px",
   border: "1px solid #ccc",
@@ -1090,16 +1090,19 @@ function getColorButtonStyle(option, colorMap) {
     style.color = "#fff";
     style.textShadow = `0 0 6px ${backgroundColor}, 0 0 20px ${backgroundColor}`;
   }
+
   // Matte - dull the color a bit
   else if (option.startsWith("Matte")) {
     style.filter = "brightness(0.75) saturate(0.6)";
     style.color = "#fff";
   }
+
   // Metallic - subtle gradient shine
   else if (option.startsWith("Metallic")) {
     style.backgroundImage = `linear-gradient(45deg, ${backgroundColor} 30%, #eee 60%, ${backgroundColor} 90%)`;
     style.color = "#222";
   }
+
   // Flake/Sparkle - simulated sparkle pattern
   else if (
     option.includes("Flake") ||
@@ -1229,7 +1232,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         />
       )}
 
-      {/* Color categories buttons */}
+      {/* If frameColor category, show color categories */}
       {activeCategory === "frameColor" && (
         <div
           style={{
@@ -1260,9 +1263,10 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         </div>
       )}
 
-      {/* Bikes brand selector */}
+      {/* Bikes category brand selector and filtered bike list */}
       {activeCategory === "bikes" && (
         <>
+          {/* Brand selector buttons */}
           <div
             style={{
               display: "flex",
@@ -1271,7 +1275,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
               marginBottom: 12,
             }}
           >
-            {Object.keys(parts.bikes || {}).map((brand) => (
+            {Object.keys(parts.bikes).map((brand) => (
               <button
                 key={brand}
                 onClick={() => {
@@ -1294,7 +1298,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
             ))}
           </div>
 
-          {/* Bike options */}
+          {/* Bikes from the selected brand filtered by search */}
           <div
             style={{
               display: "grid",
@@ -1324,7 +1328,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
         </>
       )}
 
-      {/* Options for other categories */}
+      {/* Options Grid for other categories (including frameColor) */}
       <div
         style={{
           display: "grid",
@@ -1333,7 +1337,6 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
               ? "repeat(auto-fit, minmax(110px, 1fr))"
               : "repeat(auto-fit, minmax(200px, 1fr))",
           gap: 12,
-          marginTop: 12,
         }}
       >
         {activeCategory === "frameColor"
@@ -1376,7 +1379,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
             ))}
       </div>
 
-      {/* Configuration summary */}
+      {/* Config Summary */}
       <div
         style={{
           marginTop: 36,
@@ -1386,9 +1389,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
           backgroundColor: "#fafafa",
         }}
       >
-        <h2 style={{ marginBottom: 12, fontWeight: "700", fontSize: 20 }}>
-          Your E-Bike Config
-        </h2>
+        <h2 style={{ marginBottom: 12, fontWeight: "700", fontSize: 20 }}>Your E-Bike Config</h2>
         <ul style={{ listStyleType: "disc", paddingLeft: 20 }}>
           {Object.entries(config).map(([part, value]) => (
             <li key={part} style={{ marginBottom: 4 }}>
