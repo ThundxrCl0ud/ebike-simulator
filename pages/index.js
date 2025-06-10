@@ -1120,40 +1120,33 @@ function getColorButtonStyle(option, colorMap) {
   return style;
 }
 
-export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
-  const [config, setConfig] = useState(() => {
-    try {
-      return Object.fromEntries(
-        Object.entries(parts).map(([key, value]) =>
-          Array.isArray(value) ? [key, value[0]] : [key, Object.values(value)[0][0]]
-        )
-      );
-    } catch {
-      return {};
-    }
-  });
+function EBikeCustomizer({ parts = {}, colorMap = {} }) {
+  const [config, setConfig] = React.useState(() =>
+    Object.fromEntries(
+      Object.entries(parts).map(([key, value]) =>
+        Array.isArray(value) ? [key, value[0]] : [key, Object.values(value)[0][0]]
+      )
+    )
+  );
 
-  const [activeCategory, setActiveCategory] = useState("frameColor");
-  const [colorCategory, setColorCategory] = useState("Basic");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [bikeCategory, setBikeCategory] = useState(() => {
+  const [activeCategory, setActiveCategory] = React.useState("frameColor");
+  const [colorCategory, setColorCategory] = React.useState("Basic");
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [bikeCategory, setBikeCategory] = React.useState(() => {
     const bikeKeys = Object.keys(parts?.bikes || {});
     return bikeKeys.length > 0 ? bikeKeys[0] : null;
   });
 
-  // Show search bar only for frameColor and bikes categories
   const showSearch = activeCategory === "frameColor" || activeCategory === "bikes";
 
-  // List of categories for frameColor
-  const colorCategories = useMemo(() => {
+  const colorCategories = React.useMemo(() => {
     if (activeCategory === "frameColor") {
       return Object.keys(parts?.frameColor || {});
     }
     return [];
   }, [activeCategory, parts]);
 
-  // Filter colors by selected colorCategory and search term
-  const filteredColors = useMemo(() => {
+  const filteredColors = React.useMemo(() => {
     if (activeCategory !== "frameColor") return [];
 
     let colors = parts.frameColor[colorCategory] || [];
@@ -1164,8 +1157,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
     return colors;
   }, [activeCategory, colorCategory, searchTerm, parts]);
 
-  // Filter bikes by selected brand and search term
-  const filteredBikes = useMemo(() => {
+  const filteredBikes = React.useMemo(() => {
     if (activeCategory !== "bikes" || !bikeCategory) return [];
 
     let bikes = parts.bikes[bikeCategory] || [];
@@ -1275,7 +1267,7 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
               marginBottom: 12,
             }}
           >
-            {Object.keys(parts.bikes).map((brand) => (
+            {Object.keys(parts.bikes || {}).map((brand) => (
               <button
                 key={brand}
                 onClick={() => {
@@ -1366,8 +1358,12 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
                 style={{
                   padding: 12,
                   borderRadius: 8,
-                  border: config[activeCategory] === option ? "3px solid #0070f3" : "1px solid #ccc",
-                  backgroundColor: config[activeCategory] === option ? "#e6f0ff" : "#fff",
+                  border:
+                    config[activeCategory] === option
+                      ? "3px solid #0070f3"
+                      : "1px solid #ccc",
+                  backgroundColor:
+                    config[activeCategory] === option ? "#e6f0ff" : "#fff",
                   cursor: "pointer",
                   fontWeight: config[activeCategory] === option ? "700" : "500",
                   fontSize: 16,
@@ -1389,7 +1385,9 @@ export default function EBikeCustomizer({ parts = {}, colorMap = {} }) {
           backgroundColor: "#fafafa",
         }}
       >
-        <h2 style={{ marginBottom: 12, fontWeight: "700", fontSize: 20 }}>Your E-Bike Config</h2>
+        <h2 style={{ marginBottom: 12, fontWeight: "700", fontSize: 20 }}>
+          Your E-Bike Config
+        </h2>
         <ul style={{ listStyleType: "disc", paddingLeft: 20 }}>
           {Object.entries(config).map(([part, value]) => (
             <li key={part} style={{ marginBottom: 4 }}>
