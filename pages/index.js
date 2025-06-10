@@ -66,7 +66,66 @@ const parts = {
       "Zero S ZF9", "Zero S ZF12", "Zero S ZF14", "Zero DS ZF9", "Zero DS ZF12", 
       "Zero DS ZF14", "Zero DSR ZF14", "Zero DSR ZF14.4", "Zero DSR ZF15.6", "Zero DSR ZF17.3", 
       "Zero SR/F ZF14.4", "Zero SR/F ZF17.3", "Zero SR/S ZF14.4", "Zero SR/S ZF17.3"
-    ]
+    ],
+    "Super73": [
+  "Super73 Z1", "Super73 Z", "Super73 Z Miami", "Super73 ZX", "Super73 Z Adventure",
+  "Super73 S1", "Super73 S2", "Super73 S Adventure", "Super73 S Blackout SE",
+  "Super73 R", "Super73 RX", "Super73 R Adventure", "Super73 R Blackout SE",
+  "Super73 R Brooklyn", "Super73 SG1", "Super73 SG", "Super73 SGZ", "Super73 SG2",
+  "Super73 Scout", "Super73 OG", "Super73 Original 250W", "Super73 OG1",
+  "Super73-ZG", "Super73 C1X (Concept)"
+    ],
+    "Rawrr": [
+  "Rawrr Mantis", "Rawrr Mantis BL", "Rawrr Mantis L1E", "Rawrr Mantis Carbon Edition",
+  "Rawrr Mantis 72V", "Rawrr Mantis 60V", "Rawrr Mantis MX", "Rawrr Mantis Street Legal",
+  "Rawrr Mantis Pro", "Rawrr Mantis X", "Rawrr Mantis Limited Edition"
+],
+    "Segway": [
+  "Segway Dirt eBike X160", "Segway Dirt eBike X260", 
+  "Segway Xyber", "Segway Xyber Road", "Segway Xyber Off-Road",
+  "Segway SuperScooter GT1", "Segway SuperScooter GT2",
+  "Segway SuperScooter GT2P", "Segway SuperScooter P100S", 
+  "Segway SuperScooter P65", "Segway SuperScooter P60"
+],
+"Lyric Cycles": [
+  "Lyric Graffiti", "Lyric Graffiti X", "Lyric Voodoo", 
+  "Lyric Voodoo 2.0", "Lyric Venom", "Lyric Ghost (Concept)", 
+  "Lyric Challenger (Prototype)"
+],
+"Juiced Bikes": [
+  "Juiced HyperScorpion", "Juiced HyperScorpion Express", "Juiced HyperScorpion Delta", 
+  "Juiced Scorpion", "Juiced Scorpion X", "Juiced Scrambler", "Juiced CityScrambler", 
+  "Juiced CampScrambler", "Juiced RipCurrent", "Juiced RipCurrent S", 
+  "Juiced RipCurrent S Step-Through", "Juiced RipRacer", "Juiced CrossCurrent", 
+  "Juiced CrossCurrent S2", "Juiced CrossCurrent X", "Juiced CrossCurrent X Step-Through", 
+  "Juiced CrossTour", "Juiced OceanCurrent"
+],
+"Monday Motorbikes": [
+  "Monday Anza V1", "Monday Anza V2", "Monday Anza V2S", 
+  "Monday Gateway", "Monday Gateway 750", "Monday Presidio", 
+  "Monday Presidio Pro", "Monday Gen7", "Monday Gen7 Pro"
+],
+"Zooz Bikes": [
+  "Zooz Urban Ultralight 250", "Zooz Urban Ultralight 750", "Zooz Urban Ultralight 1100",
+  "Zooz Ultra Urban 750", "Zooz Ultra Urban 1100", "Zooz Ultra Flex 1200",
+  "Zooz Ripster"
+],
+"Apollo / RFN": [
+  "RFN Ares", "RFN Tox", "RFN Wilder", "RFN Surpass", "RFN Outlaw", 
+  "RFN Apex", "RFN Resolute", "Apollo Phantom", "Apollo Phantom Sport", 
+  "Apollo Pro", "Apollo Ghost", "Apollo Explorer"
+],
+"UBCO": [
+  "UBCO 2x2 Work Bike", "UBCO 2x2 Adventure Bike", "UBCO 2x2 Special Edition",
+  "UBCO 2x2 Hunt Edition"
+],
+"Trevor Motorcycles": [
+  "DTRe Stella",
+  "DTRe Vince"
+],
+"Sondors": [
+  "Sondors Metacycle"
+],
   },
   frameColor: {
     basic: [
