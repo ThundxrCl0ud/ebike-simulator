@@ -1065,22 +1065,23 @@ function getColorButtonStyle(option) {
   };
 
   const baseStyle = {
-    padding: "8px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    cursor: "pointer",
-    userSelect: "none",
-    minWidth: "80px",
-    textAlign: "center",
-    fontWeight: "600",
-    fontSize: "0.9rem",
-    color: "#000",
-    transition: "all 0.3s ease",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
+  padding: "8px",
+  borderRadius: "6px",
+  border: "1px solid #ccc",
+  cursor: "pointer",
+  userSelect: "none",
+  minWidth: "80px",
+  textAlign: "center",
+  fontWeight: "600",
+  fontSize: "0.9rem",
+  color: "#000",
+  transition: "all 0.3s ease",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
 
+function getColorButtonStyle(option, colorMap) {
   const backgroundColor = colorMap[option] || "#fff";
   let style = { ...baseStyle, backgroundColor };
 
@@ -1119,7 +1120,7 @@ function getColorButtonStyle(option) {
   return style;
 }
 
-export default function EBikeCustomizer() {
+export default function EBikeCustomizer({ parts, colorMap }) {
   const [config, setConfig] = useState(
     Object.fromEntries(
       Object.entries(parts).map(([key, value]) =>
@@ -1133,19 +1134,20 @@ export default function EBikeCustomizer() {
   const [colorCategory, setColorCategory] = useState("Basic");
   const [searchTerm, setSearchTerm] = useState("");
   const [bikeCategory, setBikeCategory] = useState(() => {
-  const bikeKeys = Object.keys(parts?.bikes || {});
-  return bikeKeys.length > 0 ? bikeKeys[0] : null;
-});
-  // Only show search bar when activeCategory is frameColor
-  const showSearch = activeCategory === "frameColor";
+    const bikeKeys = Object.keys(parts?.bikes || {});
+    return bikeKeys.length > 0 ? bikeKeys[0] : null;
+  });
+
+  // Show search bar only for frameColor and bikes categories
+  const showSearch = activeCategory === "frameColor" || activeCategory === "bikes";
 
   // List of categories for frameColor
   const colorCategories = useMemo(() => {
-  if (activeCategory === "frameColor") {
-    return Object.keys(parts?.frameColor || {});
-  }
-  return [];
-}, [activeCategory]);
+    if (activeCategory === "frameColor") {
+      return Object.keys(parts?.frameColor || {});
+    }
+    return [];
+  }, [activeCategory, parts]);
 
   // Filter colors by selected colorCategory and search term
   const filteredColors = useMemo(() => {
@@ -1157,7 +1159,19 @@ export default function EBikeCustomizer() {
       colors = colors.filter((c) => c.toLowerCase().includes(term));
     }
     return colors;
-  }, [activeCategory, colorCategory, searchTerm]);
+  }, [activeCategory, colorCategory, searchTerm, parts]);
+
+  // Filter bikes by selected brand and search term
+  const filteredBikes = useMemo(() => {
+    if (activeCategory !== "bikes" || !bikeCategory) return [];
+
+    let bikes = parts.bikes[bikeCategory] || [];
+    if (searchTerm.trim() !== "") {
+      const term = searchTerm.toLowerCase();
+      bikes = bikes.filter((b) => b.toLowerCase().includes(term));
+    }
+    return bikes;
+  }, [activeCategory, bikeCategory, searchTerm, parts]);
 
   const updatePart = (part, value) => {
     setConfig((prev) => ({ ...prev, [part]: value }));
@@ -1175,14 +1189,14 @@ export default function EBikeCustomizer() {
           <button
             key={part}
             onClick={() => {
-  setActiveCategory(part);
-  setSearchTerm("");
-  if (part === "frameColor") setColorCategory("Basic");
-  if (part === "bikes") {
-  const bikeKeys = Object.keys(parts?.bikes || {});
-  setBikeCategory(bikeKeys.length > 0 ? bikeKeys[0] : null);
-}
-}}
+              setActiveCategory(part);
+              setSearchTerm("");
+              if (part === "frameColor") setColorCategory("Basic");
+              if (part === "bikes") {
+                const bikeKeys = Object.keys(parts?.bikes || {});
+                setBikeCategory(bikeKeys.length > 0 ? bikeKeys[0] : null);
+              }
+            }}
             style={{
               padding: "8px 16px",
               borderRadius: 6,
@@ -1197,11 +1211,11 @@ export default function EBikeCustomizer() {
         ))}
       </div>
 
-      {/* Search bar (only for colors) */}
+      {/* Search bar (for frameColor and bikes) */}
       {showSearch && (
         <input
           type="text"
-          placeholder="Search colors..."
+          placeholder={activeCategory === "frameColor" ? "Search colors..." : "Search bikes..."}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={{
@@ -1245,74 +1259,81 @@ export default function EBikeCustomizer() {
           ))}
         </div>
       )}
-{activeCategory === "bikes" && (
-  <>
-    {/* Brand selector buttons */}
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 12,
-        marginBottom: 12,
-      }}
-    >
-      {Object.keys(parts.bikes).map((brand) => (
-        <button
-          key={brand}
-          onClick={() => setBikeCategory(brand)}
-          style={{
-            padding: "6px 12px",
-            borderRadius: 6,
-            cursor: "pointer",
-            backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
-            color: bikeCategory === brand ? "#fff" : "#000",
-            fontWeight: "600",
-            fontSize: 14,
-            border: "none",
-          }}
-        >
-          {brand}
-        </button>
-      ))}
-    </div>
 
-    {/* Bikes from the selected brand */}
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-        gap: 12,
-      }}
-    >
-      {(parts.bikes[bikeCategory] || []).map((bike) => (
-        <button
-          key={bike}
-          onClick={() => updatePart("bikes", bike)}
-          style={{
-            padding: 12,
-            borderRadius: 8,
-            border:
-              config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
-            backgroundColor:
-              config.bikes === bike ? "#e6f0ff" : "#fff",
-            cursor: "pointer",
-            fontWeight: config.bikes === bike ? "700" : "500",
-            fontSize: 16,
-            userSelect: "none",
-          }}
-        >
-          {bike}
-        </button>
-      ))}
-    </div>
-  </>
-)}
+      {/* Bikes category brand selector and filtered bike list */}
+      {activeCategory === "bikes" && (
+        <>
+          {/* Brand selector buttons */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 12,
+              marginBottom: 12,
+            }}
+          >
+            {Object.keys(parts.bikes).map((brand) => (
+              <button
+                key={brand}
+                onClick={() => {
+                  setBikeCategory(brand);
+                  setSearchTerm("");
+                }}
+                style={{
+                  padding: "6px 12px",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  backgroundColor: bikeCategory === brand ? "#0070f3" : "#f0f0f0",
+                  color: bikeCategory === brand ? "#fff" : "#000",
+                  fontWeight: "600",
+                  fontSize: 14,
+                  border: "none",
+                }}
+              >
+                {brand}
+              </button>
+            ))}
+          </div>
 
-      {/* Options Grid */}
+          {/* Bikes from the selected brand filtered by search */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 12,
+            }}
+          >
+            {filteredBikes.map((bike) => (
+              <button
+                key={bike}
+                onClick={() => updatePart("bikes", bike)}
+                style={{
+                  padding: 12,
+                  borderRadius: 8,
+                  border:
+                    config.bikes === bike ? "3px solid #0070f3" : "1px solid #ccc",
+                  backgroundColor: config.bikes === bike ? "#e6f0ff" : "#fff",
+                  cursor: "pointer",
+                  fontWeight: config.bikes === bike ? "700" : "500",
+                  fontSize: 16,
+                  userSelect: "none",
+                }}
+              >
+                {bike}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Options Grid for other categories (including frameColor) */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: activeCategory === "frameColor" ? "repeat(auto-fit, minmax(110px, 1fr))" : "repeat(auto-fit, minmax(200px, 1fr))",
+          gridTemplateColumns:
+            activeCategory === "frameColor"
+              ? "repeat(auto-fit, minmax(110px, 1fr))"
+              : "repeat(auto-fit, minmax(200px, 1fr))",
           gap: 12,
         }}
       >
@@ -1321,9 +1342,11 @@ export default function EBikeCustomizer() {
               <button
                 key={color}
                 style={{
-                  ...getColorButtonStyle(color),
+                  ...getColorButtonStyle(color, colorMap),
                   border:
-                    config.frameColor === color ? "3px solid #0070f3" : "1px solid #ccc",
+                    config.frameColor === color
+                      ? "3px solid #0070f3"
+                      : "1px solid #ccc",
                   boxShadow:
                     config.frameColor === color ? "0 0 8px #0070f3" : "none",
                 }}
@@ -1333,12 +1356,12 @@ export default function EBikeCustomizer() {
                 {color}
               </button>
             ))
-          : (
-    Array.isArray(parts[activeCategory])
-      ? parts[activeCategory]
-      : Object.values(parts[activeCategory] || {}).flat()
-  ).map((option) => (
-
+          : activeCategory !== "bikes" &&
+            (
+              Array.isArray(parts[activeCategory])
+                ? parts[activeCategory]
+                : Object.values(parts[activeCategory] || {}).flat()
+            ).map((option) => (
               <button
                 key={option}
                 onClick={() => updatePart(activeCategory, option)}
@@ -1346,7 +1369,9 @@ export default function EBikeCustomizer() {
                   padding: 12,
                   borderRadius: 8,
                   border:
-                    config[activeCategory] === option ? "3px solid #0070f3" : "1px solid #ccc",
+                    config[activeCategory] === option
+                      ? "3px solid #0070f3"
+                      : "1px solid "#ccc",
                   backgroundColor:
                     config[activeCategory] === option ? "#e6f0ff" : "#fff",
                   cursor: "pointer",
