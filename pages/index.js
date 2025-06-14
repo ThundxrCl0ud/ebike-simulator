@@ -1363,4 +1363,3 @@ function App({ parts, colorMap }) {
       </div>
     </div>
   );
-}
