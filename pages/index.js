@@ -1362,4 +1362,4 @@ function App({ parts, colorMap }) {
         </ul>
       </div>
     </div>
-  );
+  )
