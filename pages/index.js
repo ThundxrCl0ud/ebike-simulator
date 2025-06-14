@@ -1364,4 +1364,5 @@ function App({ parts, colorMap }) {
     </div>
   );
 }
-}
+
+export default HomePage;
