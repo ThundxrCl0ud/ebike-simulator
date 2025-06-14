@@ -1110,6 +1110,7 @@ function getColorButtonStyle(option, colorMap) {
   return style;
 }
 
+function App({ parts, colorMap }) {
   const [config, setConfig] = React.useState(() =>
     Object.fromEntries(
       Object.entries(parts).map(([key, value]) =>
@@ -1137,7 +1138,6 @@ function getColorButtonStyle(option, colorMap) {
 
   const filteredColors = React.useMemo(() => {
     if (activeCategory !== "frameColor") return [];
-
     let colors = parts.frameColor[colorCategory] || [];
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
@@ -1148,7 +1148,6 @@ function getColorButtonStyle(option, colorMap) {
 
   const filteredBikes = React.useMemo(() => {
     if (activeCategory !== "bikes" || !bikeCategory) return [];
-
     let bikes = parts.bikes[bikeCategory] || [];
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
